@@ -42,7 +42,7 @@ public class Patient extends UserAccount {
 		return height;
 	}
 	
-	public float getWeigth() {
+	public float getWeight() {
 		return weight;
 	}
 	// Setters 
