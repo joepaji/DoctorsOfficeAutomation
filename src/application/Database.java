@@ -16,7 +16,7 @@ public class Database {
 			
 			System.out.println("Connected to server.");
 			
-			String sql = "SELECT * FROM public.doctors";
+			String sql = "SELECT * FROM doctors";
 					
 			Statement stmt = c.createStatement();
 
