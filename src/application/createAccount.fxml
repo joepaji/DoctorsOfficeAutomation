@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.createAccount">
+   <children>
+      <AnchorPane prefHeight="64.0" prefWidth="600.0" style="-fx-background-color: #8C1D40;">
+         <children>
+            <Button fx:id="backToLogin" layoutX="518.0" layoutY="16.0" minWidth="68.0" mnemonicParsing="false" onAction="#userBackToLogin" style="-fx-background-color: #FFC627; -fx-max-width: 68;" text="Back" />
+         </children>
+      </AnchorPane>
+      <Button fx:id="confirm" layoutX="266.0" layoutY="361.0" minWidth="68.0" mnemonicParsing="false" onAction="#userConfirmEntry" style="-fx-background-color: #FFC627; -fx-max-width: 68;" text="Confirm" />
+      <TextField fx:id="firstName" alignment="CENTER" layoutX="14.0" layoutY="102.0" promptText="First Name" />
+      <TextField fx:id="lastName" alignment="CENTER" layoutX="177.0" layoutY="102.0" promptText="Last Name" />
+      <TextField fx:id="dateOfBirth" alignment="CENTER" layoutX="14.0" layoutY="138.0" promptText="Date of Birth " />
+      <TextField fx:id="email" alignment="CENTER" layoutX="177.0" layoutY="138.0" promptText="Email" />
+      <TextField fx:id="phoneNum" alignment="CENTER" layoutX="14.0" layoutY="175.0" promptText="Phone Number" />
+      <Label layoutX="251.0" layoutY="70.0" text="New Patient">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="previousHealthIssues" alignment="CENTER" layoutX="350.0" layoutY="102.0" prefHeight="64.0" prefWidth="244.0" promptText="Previous Health Issues" />
+      <TextField fx:id="prevCurrMed" alignment="CENTER" layoutX="350.0" layoutY="175.0" prefHeight="64.0" prefWidth="244.0" promptText="Previous/Current Medications" />
+      <TextField fx:id="historyOfImm" alignment="CENTER" layoutX="350.0" layoutY="248.0" prefHeight="64.0" prefWidth="244.0" promptText="History of Immunization" />
+      <TextField fx:id="contactPhoneNum" alignment="CENTER" layoutX="177.0" layoutY="175.0" promptText="Contact Phone Number" />
+      <TextField fx:id="insuranceInfo" alignment="CENTER" layoutX="14.0" layoutY="207.0" prefHeight="47.0" prefWidth="310.0" promptText="Insurance Information" />
+      <TextField fx:id="pharmInfo" alignment="CENTER" layoutX="15.0" layoutY="258.0" prefHeight="54.0" prefWidth="310.0" promptText="Pharmacy Information" />
+      <TextField fx:id="username" layoutX="96.0" layoutY="318.0" promptText="username" />
+      <TextField fx:id="password" layoutX="398.0" layoutY="318.0" promptText="password" />
+   </children>
+</AnchorPane>
