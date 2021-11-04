@@ -15,7 +15,7 @@ public class Main extends Application {
 	static String url = "jdbc:postgresql://ec2-3-217-91-165.compute-1.amazonaws.com:5432/daru65ongv34rq";
 	static String username = "vabxlxvlcddmrq";
 	static String password = "972f4aeaf501184937bbc4680ac80512f01726446c3ffd7841a4a8bb449ae6da";
-	private static Stage stg;
+	static Stage stg;
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -23,7 +23,7 @@ public class Main extends Application {
 			stg = primaryStage;
 			primaryStage.setResizable(false);
 			Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
-			primaryStage.setTitle("login");
+			primaryStage.setTitle("Doctor's Office Automation System");
 			primaryStage.setScene(new Scene(root, 600, 500));
 			primaryStage.show();
 			
@@ -44,6 +44,7 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
+		
 		launch(args);
 	}
 }

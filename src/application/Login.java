@@ -41,10 +41,10 @@ public class Login {
 		usernameData = username.getText().toString();
 		passwordData = password.getText().toString();
 		int loginType = authenticateUser(usernameData, passwordData);  // authenticateUser will return -1 upon failed authetication, or usertype upon success
-		System.out.println(usernameData);
-		System.out.println(passwordData);
-		//Main m = new Main();
-		//m.changeScene("");
+		//System.out.println(Data);
+		System.out.println(loginType);
+		Main m = new Main();
+		m.changeScene("Patient Portal.fxml");
 	}
 	
 	public void userCreateAccount(ActionEvent event) {
@@ -56,11 +56,11 @@ public class Login {
 	// authenticate user upon login
 	public int authenticateUser(String pUsername, String pPassword){
 		try {
-			Connection c = DriverManager.getConnection(Main.url);
+			Connection c = DriverManager.getConnection(Main.url, Main.username, Main.password);
 			Statement stmt = c.createStatement();
 			
 			// make sure the username is unique 
-			String sql1 = "SELECT password FROM patient WHERE username = '"+ pUsername +"';";
+			String sql1 = "SELECT * FROM patient WHERE username = '"+ pUsername +"';";
 			ResultSet rs1 = stmt.executeQuery(sql1);
 			
 			String pass = "";
@@ -70,6 +70,7 @@ public class Login {
 			if(rs1.next()) {
 				pass = rs1.getString("password");
 				usertype = rs1.getInt("usertype");
+				System.out.println(pass);
 			} else return -1; //error code
 			
 			if(pPassword.equals(pass)) {
