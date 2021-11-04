@@ -41,6 +41,8 @@ public class Login {
 		usernameData = username.getText().toString();
 		passwordData = password.getText().toString();
 		int loginType = authenticateUser(usernameData, passwordData);  // authenticateUser will return -1 upon failed authetication, or usertype upon success
+		System.out.println(usernameData);
+		System.out.println(passwordData);
 		//Main m = new Main();
 		//m.changeScene("");
 	}
