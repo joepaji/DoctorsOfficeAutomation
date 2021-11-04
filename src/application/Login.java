@@ -41,6 +41,9 @@ public class Login {
 		usernameData = username.getText().toString();
 		passwordData = password.getText().toString();
 		int loginType = authenticateUser(usernameData, passwordData);  // authenticateUser will return -1 upon failed authetication, or usertype upon success
+		if(loginType == -1) {
+			wrongLogin.setText("Invalid username/password. Please try again.");
+		}
 		//Main m = new Main();
 		//m.changeScene("");
 	}
@@ -54,11 +57,12 @@ public class Login {
 	// authenticate user upon login
 	public int authenticateUser(String pUsername, String pPassword){
 		try {
-			Connection c = DriverManager.getConnection(Main.url);
+			Database db = new Database();
+			Connection c = db.connect();
 			Statement stmt = c.createStatement();
 			
 			// make sure the username is unique 
-			String sql1 = "SELECT password FROM patient WHERE username = '"+ pUsername +"';";
+			String sql1 = "SELECT username, password, usertype FROM patient WHERE username = '"+ pUsername +"'";
 			ResultSet rs1 = stmt.executeQuery(sql1);
 			
 			String pass = "";
