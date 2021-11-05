@@ -15,19 +15,19 @@
       <Button fx:id="confirm" layoutX="376.0" layoutY="533.0" minWidth="68.0" mnemonicParsing="false" onAction="#userConfirmEntry" style="-fx-background-color: #FFC627; -fx-max-width: 68;" text="Confirm" />
       <TextField fx:id="firstName" alignment="CENTER" layoutX="152.0" layoutY="133.0" promptText="First Name" />
       <TextField fx:id="lastName" alignment="CENTER" layoutX="152.0" layoutY="176.0" promptText="Last Name" />
-      <TextField fx:id="dateOfBirth" alignment="CENTER" layoutX="152.0" layoutY="339.0" promptText="Date of Birth " />
+      <TextField fx:id="username" alignment="CENTER" layoutX="152.0" layoutY="218.0" promptText="Username" />
+      <TextField fx:id="password" alignment="CENTER" layoutX="152.0" layoutY="260.0" promptText="Password" />
       <TextField fx:id="email" alignment="CENTER" layoutX="152.0" layoutY="301.0" promptText="Email" />
+      <TextField fx:id="dateOfBirth" alignment="CENTER" layoutX="152.0" layoutY="339.0" promptText="Date of Birth " />
       <TextField fx:id="phoneNum" alignment="CENTER" layoutX="152.0" layoutY="377.0" promptText="Phone Number" />
       <Label layoutX="361.0" layoutY="80.0" text="New Patient">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <TextField fx:id="username" alignment="CENTER" layoutX="152.0" layoutY="218.0" promptText="Username" />
-      <TextField fx:id="password" alignment="CENTER" layoutX="152.0" layoutY="260.0" promptText="Password" />
-      <TextArea fx:id="previousHealthIssues" layoutX="410.0" layoutY="253.0" prefHeight="64.0" prefWidth="310.0" promptText="Previous Health Issues" />
       <TextArea fx:id="insuranceInfo" layoutX="410.0" layoutY="133.0" prefHeight="46.0" prefWidth="310.0" promptText="Insurance Information" />
       <TextArea fx:id="pharmInfo" layoutX="410.0" layoutY="195.0" prefHeight="46.0" prefWidth="310.0" promptText="Pharmacy Information" />
+      <TextArea fx:id="previousHealthIssues" layoutX="410.0" layoutY="253.0" prefHeight="64.0" prefWidth="310.0" promptText="Previous Health Issues" />
       <TextArea fx:id="prevCurrMed" layoutX="411.0" layoutY="332.0" prefHeight="64.0" prefWidth="310.0" promptText="Current medications" />
       <TextArea fx:id="historyOfImm" layoutX="411.0" layoutY="409.0" prefHeight="64.0" prefWidth="310.0" promptText="Immunization History" />
       <Label fx:id="error" alignment="CENTER" layoutX="260.0" layoutY="498.0" prefWidth="300.0" textFill="RED">
