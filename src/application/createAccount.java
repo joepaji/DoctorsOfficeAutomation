@@ -92,10 +92,10 @@ public class createAccount {
 		passwordData = password.getText().toString();
 		
 		if(isFieldEmpty(firstNameData, lastNameData, dateOfBirthData, usernameData, passwordData)) 
-			error.setText("Oops, you missed some required fields");
+			error.setText("Oops, you missed some required fields.");
 		
 		else {
-			error.setText("");
+			error.setText("Account has been created.");
 			saveEntry();
 		}
 			
@@ -114,7 +114,7 @@ public class createAccount {
 			ResultSet result = stmt.executeQuery(sql);
 			
 			if(result.isBeforeFirst()) {
-				error.setText("Oops, that username already exists");
+				error.setText("Oops, that username already exists.");
 			}
 			else {
 				// Insert into table

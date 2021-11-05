@@ -59,7 +59,7 @@ public class Login {
 				m.changeScene(destination);
 				break;
 				
-			case 2 : destination = "NP.fxml";
+			case 2 : destination = "NursePortal.fxml";
 				m.changeScene(destination);	
 				break;
 				
