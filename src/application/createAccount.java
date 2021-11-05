@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import java.sql.Connection;
@@ -31,21 +32,23 @@ public class createAccount {
 	@FXML
 	private TextField contactPhoneNum;
 	@FXML
-	private TextField insuranceInfo;
+	private TextArea insuranceInfo;
 	@FXML
-	private TextField pharmInfo;
+	private TextArea pharmInfo;
 	@FXML
-	private TextField previousHealthIssues;
+	private TextArea previousHealthIssues;
 	@FXML
-	private TextField prevCurrMed;
+	private TextArea prevCurrMed;
 	@FXML
-	private TextField historyOfImm;
+	private TextArea historyOfImm;
 	@FXML
 	private TextField username;
 	@FXML
 	private TextField password;
 	@FXML
 	private Button confirm;
+	@FXML
+	private Label error;
 	
 	//data
 	private String firstNameData;
@@ -77,7 +80,7 @@ public class createAccount {
 		dateOfBirthData = dateOfBirth.getText().toString();
 		emailData = email.getText().toString();
 		phoneNumData = phoneNum.getText().toString();
-		contactPhoneNumData = contactPhoneNum.getText().toString();
+//		contactPhoneNumData = contactPhoneNum.getText().toString();
 		insuranceInfoData = insuranceInfo.getText().toString();
 		pharmInfoData = pharmInfo.getText().toString();
 		previousHealthIssuesData = previousHealthIssues.getText().toString();
@@ -85,22 +88,35 @@ public class createAccount {
 		historyOfImmData = historyOfImm.getText().toString();
 		usernameData = username.getText().toString();
 		passwordData = password.getText().toString();
-		
-		
+//		
+		saveEntry();
 	}
 	
 	public void saveEntry()
 	{
 		try {
-			Connection c = DriverManager.getConnection(Main.url, Main.username, Main.password);
+			Database db = new Database();
+			Connection c = db.connect();
 			Statement stmt = c.createStatement();
 			
-			// make sure the username is unique 
-			String sql1 = "INSERT INTO patient(medicalEntries) WHERE username = '"+ this.usernameData +"';";
-			// todo
-				
+			// Check if username already exists
+			String sql = "SELECT * from patient WHERE username = '" + usernameData + "'";
+			
+			ResultSet result = stmt.executeQuery(sql);
+			
+			if(result.isBeforeFirst()) {
+				error.setText("Error, username already exists");
+			}
+			else {
+				// Insert into table
+				//sql = "INSERT into patient(first_name, last_name, "
+			}
+			
+			c.close();
+			
+			
 		} catch (SQLException e) {	
-			System.out.println("Error in connecting to postgreSQL server.");
+			System.out.println("Error in adding user. Check that all required values are filled out.");
 			e.printStackTrace();
 		}
 	}

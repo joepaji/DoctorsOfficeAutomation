@@ -20,7 +20,7 @@ public class Main extends Application {
 			primaryStage.setResizable(false);
 			Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
 			primaryStage.setTitle("Doctor's Office Automation System");
-			primaryStage.setScene(new Scene(root, 600, 500));
+			primaryStage.setScene(new Scene(root, 800, 600));
 			primaryStage.show();
 			
 		} catch(Exception e) {
