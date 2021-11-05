@@ -96,22 +96,8 @@ public class createAccount {
 			Statement stmt = c.createStatement();
 			
 			// make sure the username is unique 
-			String sql1 = "SELECT  FROM patient WHERE username = '"+ this.usernameData +"';";
-			ResultSet rs1 = stmt.executeQuery(sql1);
-			
-			String pass = "";
-			int usertype = 0;
-			
-			// check to make sure rs is not empty
-			if(rs1.next()) {
-				pass = rs1.getString("password");
-				usertype = rs1.getInt("usertype");
-				System.out.println(pass);
-			} else return -1; //error code
-			
-			if(pPassword.equals(pass)) {
-				return usertype;
-			} else return -1; //error code
+			String sql1 = "INSERT INTO patient(medicalEntries) WHERE username = '"+ this.usernameData +"';";
+			// todo
 				
 		} catch (SQLException e) {	
 			System.out.println("Error in connecting to postgreSQL server.");
