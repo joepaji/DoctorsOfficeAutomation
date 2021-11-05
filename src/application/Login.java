@@ -44,26 +44,31 @@ public class Login {
 		//System.out.println(Data);
 		System.out.println(loginType);
 		loginType = 2;
+		
 		Main m = new Main();
 		String destination = "";
 		
 		switch(loginType) // this switch will determine what the outcome of the authenticator was
 		{
 			case -1 : destination = "login.fxml";
-				System.out.println("Sorry, it looks like that username/password combination does not match any our records."); // change this to display to user	
+				wrongLogin.setText("Incorrect username/password. Please try again.");
+				System.out.println("Sorry, it looks like that username/password combination does not match any of our records."); // change this to display to user	
 				break;
 				
 			case 1 : destination = "Patient Portal.fxml";
+				m.changeScene(destination);
 				break;
 				
-			case 2 : destination = "NursePortal.fxml";
+			case 2 : destination = "NP.fxml";
+				m.changeScene(destination);	
 				break;
 				
 			case 3 : destination = "Doctors Portal.fxml";
+				m.changeScene(destination);
 				default : 
 		}
 		
-		m.changeScene(destination);
+		//
 	}
 	
 	public void userCreateAccount(ActionEvent event) {
@@ -75,12 +80,14 @@ public class Login {
 	// authenticate user upon login
 	public int authenticateUser(String pUsername, String pPassword){
 		try {
-			Connection c = DriverManager.getConnection(Main.url, Main.username, Main.password);
+			Database db = new Database();
+			Connection c = db.connect();
 			Statement stmt = c.createStatement();
 			
 			// make sure the username is unique 
 			String sql1 = "SELECT * FROM patient WHERE username = '"+ pUsername +"';";
 			ResultSet rs1 = stmt.executeQuery(sql1);
+			c.close();
 			
 			String pass = "";
 			int usertype = 0;
