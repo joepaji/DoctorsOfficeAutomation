@@ -43,7 +43,7 @@ public class Login {
 		int loginType = authenticateUser(usernameData, passwordData);  // authenticateUser will return -1 upon failed authetication, or usertype upon success
 		//System.out.println(Data);
 		System.out.println(loginType);
-		loginType = -1;
+		loginType = 2;
 		Main m = new Main();
 		String destination = "";
 		
@@ -56,7 +56,7 @@ public class Login {
 			case 1 : destination = "Patient Portal.fxml";
 				break;
 				
-			case 2 : destination = "NP.fxml";
+			case 2 : destination = "NursePortal.fxml";
 				break;
 				
 			case 3 : destination = "Doctors Portal.fxml";
