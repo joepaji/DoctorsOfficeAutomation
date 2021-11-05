@@ -5,6 +5,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import javafx.event.ActionEvent;
 
 public class createAccount {
@@ -62,9 +69,10 @@ public class createAccount {
 	}
 	
 	public void userConfirmEntry(ActionEvent event) {
-		Main m = new Main();
+		//Main m = new Main();
 		
-		firstNameData = firstName.getText().toString();
+		String stringBlock = "";
+		firstNameData = firstName.getText().toString(); stringBlock += firstNameData + "\n";
 		lastNameData = lastName.getText().toString();
 		dateOfBirthData = dateOfBirth.getText().toString();
 		emailData = email.getText().toString();
@@ -78,7 +86,37 @@ public class createAccount {
 		usernameData = username.getText().toString();
 		passwordData = password.getText().toString();
 		
-		m.changeScene("login.fxml");
+		
+	}
+	
+	public void saveEntry()
+	{
+		try {
+			Connection c = DriverManager.getConnection(Main.url, Main.username, Main.password);
+			Statement stmt = c.createStatement();
+			
+			// make sure the username is unique 
+			String sql1 = "SELECT  FROM patient WHERE username = '"+ this.usernameData +"';";
+			ResultSet rs1 = stmt.executeQuery(sql1);
+			
+			String pass = "";
+			int usertype = 0;
+			
+			// check to make sure rs is not empty
+			if(rs1.next()) {
+				pass = rs1.getString("password");
+				usertype = rs1.getInt("usertype");
+				System.out.println(pass);
+			} else return -1; //error code
+			
+			if(pPassword.equals(pass)) {
+				return usertype;
+			} else return -1; //error code
+				
+		} catch (SQLException e) {	
+			System.out.println("Error in connecting to postgreSQL server.");
+			e.printStackTrace();
+		}
 	}
 
 }

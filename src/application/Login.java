@@ -43,8 +43,27 @@ public class Login {
 		int loginType = authenticateUser(usernameData, passwordData);  // authenticateUser will return -1 upon failed authetication, or usertype upon success
 		//System.out.println(Data);
 		System.out.println(loginType);
+		loginType = -1;
 		Main m = new Main();
-		m.changeScene("Patient Portal.fxml");
+		String destination = "";
+		
+		switch(loginType) // this switch will determine what the outcome of the authenticator was
+		{
+			case -1 : destination = "login.fxml";
+				System.out.println("Sorry, it looks like that username/password combination does not match any our records."); // change this to display to user	
+				break;
+				
+			case 1 : destination = "Patient Portal.fxml";
+				break;
+				
+			case 2 : destination = "NP.fxml";
+				break;
+				
+			case 3 : destination = "Doctors Portal.fxml";
+				default : 
+		}
+		
+		m.changeScene(destination);
 	}
 	
 	public void userCreateAccount(ActionEvent event) {

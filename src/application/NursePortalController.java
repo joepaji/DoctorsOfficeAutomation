@@ -26,11 +26,12 @@ public class NursePortalController{
 	@FXML
 	private TextField dateOfBirth;
 	
-	//data
-	private String firstNameData;
-	private String lastNameData;
-	private String dateOfBirthData;
-	private String prevCheckInData;
+
+	
+	public NursePortalController()
+	{
+		
+	}
 	
 	public void userBackToLogin(ActionEvent event) {
 		Main m = new Main();

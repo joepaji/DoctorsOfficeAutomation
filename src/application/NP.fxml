@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NP">
+   <center>
+      <AnchorPane>
+         <children>
+            <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: #8C1D40;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="73.0" layoutY="182.0" text="Patient Search">
+                     <font>
+                        <Font name="System Font" size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="username" layoutX="39.0" layoutY="237.0" promptText="First Name" />
+                  <TextField fx:id="password" layoutX="39.0" layoutY="268.0" promptText="Last Name" />
+                  <Button fx:id="search" layoutX="75.0" layoutY="337.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="96.0" style="-fx-background-color: #FFC627;" text="Search" />
+                  <Button fx:id="userBackToLogin" layoutX="405.0" layoutY="155.0" mnemonicParsing="false" onAction="#userBackToLogin" onMouseClicked="#userBackToLogin" style="-fx-background-color: #FFC627;" text="Sign Out" />
+                  <Label layoutX="239.0" layoutY="328.0" text="Don't have an account?" textFill="WHITE" />
+                  <TextField fx:id="password1" layoutX="39.0" layoutY="299.0" promptText="Date Of Birth" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
