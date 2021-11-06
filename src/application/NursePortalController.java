@@ -71,6 +71,12 @@ public class NursePortalController{
 	public void checkIn(ActionEvent event) throws IOException
 	{
 		System.out.println("checkin");
+		destination = "PatientCheckIn.fxml";    //testing
+		root = FXMLLoader.load(getClass().getResource(destination));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
 	}
 	
 }

@@ -95,7 +95,7 @@ public class createAccount {
 			error.setText("Oops, you missed some required fields");
 		
 		else {
-			error.setText("");
+			error.setText("Account has been created.");
 			saveEntry();
 		}
 			
