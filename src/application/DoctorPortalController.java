@@ -10,15 +10,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 import javafx.event.ActionEvent;
 
-public class NursePortalController{
+public class DoctorPortalController{
 	
 	@FXML
 	private Button signOut;
@@ -42,7 +37,7 @@ public class NursePortalController{
 	private Parent root;
 	private String destination;
 	
-	public NursePortalController()
+	public DoctorPortalController()
 	{
 		
 	}
@@ -71,34 +66,9 @@ public class NursePortalController{
 	public void search(ActionEvent event) throws IOException
 	{
 		System.out.println("search");
-		try {
-			Database db = new Database();
-			Connection c = db.connect();
-			Statement stmt = c.createStatement();
-			
-			// search the database for shopping_cart with matching userID
-			String sql = "SELECT * FROM patient WHERE (first_name = '" + firstName.getText().toString() +
-												  "' AND last_name = '" + lastName.getText().toString() + "');";	
-			ResultSet rs = stmt.executeQuery(sql); 
-			
-			if(rs.next()) {
-				String first = rs.getString("first_name");
-				String last = rs.getString("last_name"); 
-				// ************** TODO
-				System.out.println(first);
-				System.out.println(last);
-				
-			} else {
-				System.out.println("Patient not found");
-			}
-				
-		} catch (SQLException e) {	
-			System.out.println("Error in connecting to postgreSQL server.");
-			e.printStackTrace();
-		}
 	}
 	
-	public void checkIn(ActionEvent event) throws IOException
+	public void beginExam(ActionEvent event) throws IOException
 	{
 		System.out.println("checkin");
 		destination = "PatientCheckIn.fxml";    //testing
