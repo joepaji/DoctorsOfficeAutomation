@@ -13,13 +13,13 @@
          </children>
       </AnchorPane>
       <Button fx:id="confirm" layoutX="376.0" layoutY="533.0" minWidth="68.0" mnemonicParsing="false" onAction="#userConfirmEntry" style="-fx-background-color: #FFC627; -fx-max-width: 68;" text="Confirm" />
-      <TextField fx:id="firstName" alignment="CENTER" layoutX="152.0" layoutY="133.0" promptText="First Name" />
-      <TextField fx:id="lastName" alignment="CENTER" layoutX="152.0" layoutY="176.0" promptText="Last Name" />
-      <TextField fx:id="username" alignment="CENTER" layoutX="152.0" layoutY="218.0" promptText="Username" />
-      <TextField fx:id="password" alignment="CENTER" layoutX="152.0" layoutY="260.0" promptText="Password" />
-      <TextField fx:id="email" alignment="CENTER" layoutX="152.0" layoutY="301.0" promptText="Email" />
-      <TextField fx:id="dateOfBirth" alignment="CENTER" layoutX="152.0" layoutY="339.0" promptText="Date of Birth " />
-      <TextField fx:id="phoneNum" alignment="CENTER" layoutX="152.0" layoutY="377.0" promptText="Phone Number" />
+      <TextField fx:id="firstName" alignment="CENTER" layoutX="152.0" layoutY="133.0" prefHeight="25.0" prefWidth="164.0" promptText="First Name" />
+      <TextField fx:id="lastName" alignment="CENTER" layoutX="152.0" layoutY="176.0" prefHeight="25.0" prefWidth="164.0" promptText="Last Name" />
+      <TextField fx:id="username" alignment="CENTER" layoutX="152.0" layoutY="218.0" prefHeight="25.0" prefWidth="164.0" promptText="Username" />
+      <TextField fx:id="password" alignment="CENTER" layoutX="152.0" layoutY="260.0" prefHeight="25.0" prefWidth="164.0" promptText="Password" />
+      <TextField fx:id="email" alignment="CENTER" layoutX="152.0" layoutY="301.0" prefHeight="25.0" prefWidth="164.0" promptText="Email" />
+      <TextField fx:id="dateOfBirth" alignment="CENTER" layoutX="152.0" layoutY="339.0" prefHeight="25.0" prefWidth="164.0" promptText="Date of Birth (mm/dd/yyyy)" />
+      <TextField fx:id="phoneNum" alignment="CENTER" layoutX="152.0" layoutY="377.0" prefHeight="25.0" prefWidth="164.0" promptText="Phone Number" />
       <Label layoutX="361.0" layoutY="80.0" text="New Patient">
          <font>
             <Font name="System Bold" size="17.0" />
