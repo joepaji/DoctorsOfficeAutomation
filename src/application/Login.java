@@ -58,13 +58,14 @@ public class Login {
 		switch(loginType) // this switch will determine what the outcome of the authenticator was
 		{
 			case -1 : destination = "";
-				wrongLogin.setText("Incorrect username/password. Please try agains.");
+				wrongLogin.setText("Incorrect username/password. Please try again.");
 				break;
 				
 			case 1 : destination = "Patient Portal.fxml";
 				break;
 				
 			case 2 : destination = "NursePortal.fxml";	
+
 				break;
 				
 			case 3 : destination = "DoctorPortal.fxml";
