@@ -83,7 +83,7 @@ public class PatientCheckIn{
 	
 	public void toHome(ActionEvent event) throws IOException
 	{
-		destination = "login.fxml"; 
+		destination = "NursePortal.fxml"; 
 		root = FXMLLoader.load(getClass().getResource(destination));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
 		scene = new Scene(root);
