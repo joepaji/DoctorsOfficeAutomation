@@ -64,7 +64,7 @@ public class Login {
 			case 1 : destination = "Patient Portal.fxml";
 				break;
 				
-			case 2 : destination = "NursePortal.fxml";	
+			case 2 : destination = "PatientCheckIn.fxml";	
 
 				break;
 				
@@ -75,7 +75,9 @@ public class Login {
 		// open the proper scene depending on userType
 		if(destination != "")  // make sure there was a valid destination
 		{
-			root = FXMLLoader.load(getClass().getResource(destination));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
+			root = loader.load();
+			//root = FXMLLoader.load(getClass().getResource(destination));		
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
 			scene = new Scene(root);
 			stage.setScene(scene);

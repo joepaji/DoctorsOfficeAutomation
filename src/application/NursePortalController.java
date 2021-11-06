@@ -36,6 +36,7 @@ public class NursePortalController{
 	private Scene scene;
 	private Parent root;
 	private String destination;
+	private String username;
 	
 	public NursePortalController()
 	{
@@ -70,9 +71,15 @@ public class NursePortalController{
 	
 	public void checkIn(ActionEvent event) throws IOException
 	{
+		//TODO check if username is selected (should be assigned from search function)
 		System.out.println("checkin");
 		destination = "PatientCheckIn.fxml";    //testing
-		root = FXMLLoader.load(getClass().getResource(destination));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
+		root = loader.load();
+		//This passes the username of the patient to the patientCheckIn controller
+		PatientCheckIn patientCheckIn = loader.getController();
+		patientCheckIn.setUsername(username);
+		
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
 		scene = new Scene(root);
 		stage.setScene(scene);

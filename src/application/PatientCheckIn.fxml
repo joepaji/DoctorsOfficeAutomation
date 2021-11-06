@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -8,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PatientCheckIn">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PatientCheckIn">
    <children>
       <AnchorPane prefHeight="62.0" prefWidth="600.0" style="-fx-background-color: #8c1d40;">
          <children>
@@ -29,10 +33,9 @@
       <TextField fx:id="weight" layoutX="425.0" layoutY="75.0" promptText="Weight" />
       <TextField fx:id="temperature" layoutX="225.0" layoutY="105.0" promptText="Temperature" />
       <TextField fx:id="bloodPressure" layoutX="425.0" layoutY="105.0" promptText="Blood Pressure" />
-      <TextArea fx:id="healthConcerns" layoutX="230.0" layoutY="135.0" prefHeight="55.0" prefWidth="150.0" promptText="Health Concerns" />
-      <TextArea fx:id="medications" layoutX="425.0" layoutY="135.0" prefHeight="55.0" prefWidth="150.0" promptText="Medication(s)" />
-      <TextArea fx:id="allergies" layoutX="230.0" layoutY="195.0" prefHeight="175.0" prefWidth="150.0" promptText="Allergies" />
-      <TextArea fx:id="notes" layoutX="425.0" layoutY="195.0" prefHeight="175.0" prefWidth="150.0" promptText="Additional Notes" />
+      <TextArea fx:id="healthConcerns" layoutX="225.0" layoutY="135.0" prefHeight="55.0" prefWidth="150.0" promptText="Health Concerns" />
+      <TextArea fx:id="allergies" layoutX="225.0" layoutY="195.0" prefHeight="175.0" prefWidth="150.0" promptText="Allergies" />
+      <TextArea fx:id="notes" layoutX="425.0" layoutY="135.0" prefHeight="234.0" prefWidth="150.0" promptText="Additional Notes" />
       <Button fx:id="confirmEntry" layoutX="65.0" layoutY="345.0" mnemonicParsing="false" onAction="#confirmEntry" prefWidth="70.0" style="-fx-background-color: #FFC627;" text="Confirm" />
    </children>
 </AnchorPane>

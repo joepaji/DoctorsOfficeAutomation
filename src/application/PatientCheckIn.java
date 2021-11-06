@@ -2,6 +2,7 @@ package application;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -10,10 +11,18 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 
-public class PatientCheckIn{
+public class PatientCheckIn implements Initializable{
 	
 	@FXML
 	private Button signOut;
@@ -33,8 +42,7 @@ public class PatientCheckIn{
 	private TextField bloodPressure;
 	@FXML
 	private TextArea healthConcerns;
-	@FXML
-	private TextArea medications;
+
 	@FXML
 	private TextArea allergies;
 	@FXML
@@ -50,13 +58,17 @@ public class PatientCheckIn{
 	private String temperatureData;
 	private String bpData;
 	private String healthConcernsData;
-	private String medicationData;
 	private String allergiesData;
 	private String notesData;
+	private String username;
 	
 	
 	public PatientCheckIn()
 	{
+		
+	}
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
 		
 	}
 	
@@ -98,7 +110,6 @@ public class PatientCheckIn{
 		temperatureData = temperature.getText().toString();
 		bpData = height.getText().toString();
 		healthConcernsData = weight.getText().toString();
-		medicationData = temperature.getText().toString();
 		allergiesData = height.getText().toString();
 		notesData = weight.getText().toString();
 		
@@ -106,7 +117,50 @@ public class PatientCheckIn{
 		// test
 		System.out.println(heightData);
 		System.out.println(weightData);
+		saveEntry();
 		
 	}
 	
+	public void saveEntry() {
+		LocalDateTime dateTime = LocalDateTime.now();
+		System.out.println("User is: " + username);
+//		try {
+//			Database db = new Database();
+//			Connection c = db.connect();
+//			Statement stmt = c.createStatement();
+//				
+//			// Insert into table
+//			String sql = "INSERT into visits(height, weight,"
+//					+ "temperature, bp, health_concerns, medications, allergies, nurse_notes,dateTime"; 
+//				
+//			PreparedStatement prepStatement = c.prepareStatement(sql);
+//			
+//			prepStatement.setString(1, heightData);
+//			
+//			
+//		} catch (SQLException e) {	
+//			System.out.println("Error in adding record. Check that all required values are filled out.");
+//			printSQLException(e);
+//		}
+	}
+	
+	public static void printSQLException(SQLException ex) {
+        for (Throwable e: ex) {
+            if (e instanceof SQLException) {
+                e.printStackTrace(System.err);
+                System.err.println("SQLState: " + ((SQLException) e).getSQLState());
+                System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
+                System.err.println("Message: " + e.getMessage());
+                Throwable t = ex.getCause();
+                while (t != null) {
+                    System.out.println("Cause: " + t);
+                    t = t.getCause();
+                }
+            }
+        }
+    }
+	
+	public void setUsername(String username) {
+		this.username = username;
+	}
 }
