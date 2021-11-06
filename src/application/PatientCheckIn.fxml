@@ -12,9 +12,9 @@
    <children>
       <AnchorPane prefHeight="62.0" prefWidth="600.0" style="-fx-background-color: #8c1d40;">
          <children>
-            <Button layoutX="508.0" layoutY="19.0" mnemonicParsing="false" prefWidth="70.0" style="-fx-background-color: #FFC627;" text="Sign out" />
-            <Button layoutX="428.0" layoutY="19.0" mnemonicParsing="false" prefWidth="70.0" style="-fx-background-color: #FFC627;" text="Messages" />
-            <Button layoutX="349.0" layoutY="19.0" mnemonicParsing="false" prefWidth="70.0" style="-fx-background-color: #FFC627;" text="Home" />
+            <Button fx:id="signOut" layoutX="508.0" layoutY="19.0" mnemonicParsing="false" onAction="#signOut" prefWidth="70.0" style="-fx-background-color: #FFC627;" text="Sign out" />
+            <Button fx:id="messages" layoutX="428.0" layoutY="19.0" mnemonicParsing="false" onAction="#toMessages" prefWidth="70.0" style="-fx-background-color: #FFC627;" text="Messages" />
+            <Button fx:id="home" layoutX="349.0" layoutY="19.0" mnemonicParsing="false" onAction="#toHome" prefWidth="70.0" style="-fx-background-color: #FFC627;" text="Home" />
          </children>
       </AnchorPane>
       <Label layoutX="41.6" layoutY="75.0" text="Patient Check-In">
@@ -25,14 +25,14 @@
       <Separator layoutX="200.0" layoutY="62.0" orientation="VERTICAL" prefHeight="338.0" />
       <TextArea layoutX="12.5" layoutY="100.0" prefHeight="100.0" prefWidth="175.0" text="Patient Name:&#10;&#10;Date of Birth:&#10;&#10;Phone Number:" />
       <TextArea layoutX="12.5" layoutY="205.0" prefHeight="135.0" prefWidth="175.0" text="-Immunization&#10;-Previous Medication&#10;-Previous Health Issues" />
-      <TextField layoutX="225.0" layoutY="75.0" promptText="Height" />
-      <TextField layoutX="425.0" layoutY="75.0" promptText="Weight" />
-      <TextField layoutX="225.0" layoutY="105.0" promptText="Temperature" />
-      <TextField layoutX="425.0" layoutY="105.0" promptText="Blood Pressure" />
-      <TextArea layoutX="225.0" layoutY="135.0" prefHeight="55.0" prefWidth="150.0" promptText="Health Concerns" />
-      <TextArea layoutX="425.0" layoutY="135.0" prefHeight="55.0" prefWidth="150.0" promptText="Medication(s)" />
-      <TextArea layoutX="225.0" layoutY="195.0" prefHeight="175.0" prefWidth="150.0" promptText="Allergies" />
-      <TextArea layoutX="425.0" layoutY="195.0" prefHeight="175.0" prefWidth="150.0" promptText="Additional Notes" />
-      <Button layoutX="65.0" layoutY="345.0" mnemonicParsing="false" prefWidth="70.0" style="-fx-background-color: #FFC627;" text="Confirm" />
+      <TextField fx:id="height" layoutX="225.0" layoutY="75.0" promptText="Height" />
+      <TextField fx:id="weight" layoutX="425.0" layoutY="75.0" promptText="Weight" />
+      <TextField fx:id="temperature" layoutX="225.0" layoutY="105.0" promptText="Temperature" />
+      <TextField fx:id="bloodPressure" layoutX="425.0" layoutY="105.0" promptText="Blood Pressure" />
+      <TextArea fx:id="healthConcerns" layoutX="230.0" layoutY="135.0" prefHeight="55.0" prefWidth="150.0" promptText="Health Concerns" />
+      <TextArea fx:id="medications" layoutX="425.0" layoutY="135.0" prefHeight="55.0" prefWidth="150.0" promptText="Medication(s)" />
+      <TextArea fx:id="allergies" layoutX="230.0" layoutY="195.0" prefHeight="175.0" prefWidth="150.0" promptText="Allergies" />
+      <TextArea fx:id="notes" layoutX="425.0" layoutY="195.0" prefHeight="175.0" prefWidth="150.0" promptText="Additional Notes" />
+      <Button fx:id="confirmEntry" layoutX="65.0" layoutY="345.0" mnemonicParsing="false" onAction="#confirmEntry" prefWidth="70.0" style="-fx-background-color: #FFC627;" text="Confirm" />
    </children>
 </AnchorPane>
