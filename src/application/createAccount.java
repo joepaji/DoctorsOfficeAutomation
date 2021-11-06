@@ -76,8 +76,7 @@ public class createAccount {
 	public void userConfirmEntry(ActionEvent event) {
 		//Main m = new Main();
 		
-		String stringBlock = "";
-		firstNameData = firstName.getText().toString(); stringBlock += firstNameData + "\n";
+		firstNameData = firstName.getText().toString();
 		lastNameData = lastName.getText().toString();
 		dateOfBirthData = dateOfBirth.getText().toString();
 		emailData = email.getText().toString();
