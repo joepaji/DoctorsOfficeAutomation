@@ -1,11 +1,14 @@
 package application;
 
 import javafx.fxml.FXML;
-
+import javafx.fxml.FXMLLoader;
+import javafx.scene.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -17,6 +20,10 @@ import javafx.event.ActionEvent;
 
 
 public class Login {
+	
+	private Stage stage;
+	private Scene scene;
+	private Parent root;
 	
 	@FXML
 	private Button login;
@@ -37,44 +44,53 @@ public class Login {
 		
 	}
 	
-	public void userLogin(ActionEvent event) {
+	public void userLogin(ActionEvent event) throws IOException {
 		usernameData = username.getText().toString();
 		passwordData = password.getText().toString();
 		int loginType = authenticateUser(usernameData, passwordData);  // authenticateUser will return -1 upon failed authetication, or usertype upon success
 		//System.out.println(Data);
 		System.out.println(loginType);
-		loginType = 2;
 		
-		Main m = new Main();
 		String destination = "";
+		
+		loginType = 2;
 		
 		switch(loginType) // this switch will determine what the outcome of the authenticator was
 		{
-			case -1 : destination = "login.fxml";
+			case -1 : destination = "";
 				wrongLogin.setText("Incorrect username/password. Please try again.");
-				System.out.println("Sorry, it looks like that username/password combination does not match any of our records."); // change this to display to user	
 				break;
 				
 			case 1 : destination = "Patient Portal.fxml";
-				m.changeScene(destination);
 				break;
 				
-			case 2 : destination = "NursePortal.fxml";
-				m.changeScene(destination);	
+			case 2 : destination = "NursePortal.fxml";	
+
 				break;
 				
-			case 3 : destination = "Doctors Portal.fxml";
-				m.changeScene(destination);
-				default : 
+			case 3 : destination = "DoctorPortal.fxml";
+				break;
 		}
 		
-		//
+		// open the proper scene depending on userType
+		if(destination != "")  // make sure there was a valid destination
+		{
+			root = FXMLLoader.load(getClass().getResource(destination));
+			stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
+			scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+		}
+		
 	}
 	
-	public void userCreateAccount(ActionEvent event) {
+	public void userCreateAccount(ActionEvent event) throws IOException {
 		//checkLogin();
-		Main m = new Main();
-		m.changeScene("createAccount.fxml");
+		root = FXMLLoader.load(getClass().getResource("createAccount.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
 	}
 	
 	// authenticate user upon login
