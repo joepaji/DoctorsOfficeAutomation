@@ -85,6 +85,7 @@ public class NursePortalController{
 			if(rs.next()) {
 				String first = rs.getString("first_name");
 				String last = rs.getString("last_name"); 
+				username = rs.getString("username");
 				// ************** TODO
 				System.out.println(first);
 				System.out.println(last);

@@ -64,7 +64,7 @@ public class Login {
 			case 1 : destination = "Patient Portal.fxml";
 				break;
 				
-			case 2 : destination = "PatientCheckIn.fxml";	
+			case 2 : destination = "NursePortal.fxml";	
 
 				break;
 				
