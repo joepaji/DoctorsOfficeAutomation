@@ -119,7 +119,7 @@ public class createAccount {
 				// Insert into table
 				sql = "INSERT into patient(first_name, last_name,"
 						+ "username, password, email, phone, dob, insurance, pharmacy, "
-						+ "health_issues, prescriptions, immunization, usertype) "
+						+ "health_issues, curr_med, immunization, usertype) "
 						+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"; 
 				
 				PreparedStatement prepStatement = c.prepareStatement(sql);

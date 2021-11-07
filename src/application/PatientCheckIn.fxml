@@ -12,30 +12,30 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PatientCheckIn">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PatientCheckIn">
    <children>
-      <AnchorPane prefHeight="62.0" prefWidth="600.0" style="-fx-background-color: #8c1d40;">
+      <AnchorPane prefHeight="62.0" prefWidth="800.0" style="-fx-background-color: #8c1d40;">
          <children>
-            <Button fx:id="signOut" layoutX="508.0" layoutY="19.0" mnemonicParsing="false" onAction="#signOut" prefWidth="70.0" style="-fx-background-color: #FFC627;" text="Sign out" />
-            <Button fx:id="messages" layoutX="428.0" layoutY="19.0" mnemonicParsing="false" onAction="#toMessages" prefWidth="70.0" style="-fx-background-color: #FFC627;" text="Messages" />
-            <Button fx:id="home" layoutX="349.0" layoutY="19.0" mnemonicParsing="false" onAction="#toHome" prefWidth="70.0" style="-fx-background-color: #FFC627;" text="Home" />
+            <Button fx:id="signOut" layoutX="700.0" layoutY="19.0" mnemonicParsing="false" onAction="#signOut" prefWidth="70.0" style="-fx-background-color: #FFC627;" text="Sign out" />
+            <Button fx:id="messages" layoutX="620.0" layoutY="19.0" mnemonicParsing="false" onAction="#toMessages" prefWidth="70.0" style="-fx-background-color: #FFC627;" text="Messages" />
+            <Button fx:id="home" layoutX="541.0" layoutY="19.0" mnemonicParsing="false" onAction="#toHome" prefWidth="70.0" style="-fx-background-color: #FFC627;" text="Home" />
          </children>
       </AnchorPane>
-      <Label layoutX="41.6" layoutY="75.0" text="Patient Check-In">
+      <Label layoutX="520.0" layoutY="107.0" text="Patient Check-In">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Separator layoutX="200.0" layoutY="62.0" orientation="VERTICAL" prefHeight="338.0" />
-      <TextArea layoutX="12.5" layoutY="100.0" prefHeight="100.0" prefWidth="175.0" text="Patient Name:&#10;&#10;Date of Birth:&#10;&#10;Phone Number:" />
-      <TextArea layoutX="12.5" layoutY="205.0" prefHeight="135.0" prefWidth="175.0" text="-Immunization&#10;-Previous Medication&#10;-Previous Health Issues" />
-      <TextField fx:id="height" layoutX="225.0" layoutY="75.0" promptText="Height" />
-      <TextField fx:id="weight" layoutX="425.0" layoutY="75.0" promptText="Weight" />
-      <TextField fx:id="temperature" layoutX="225.0" layoutY="105.0" promptText="Temperature" />
-      <TextField fx:id="bloodPressure" layoutX="425.0" layoutY="105.0" promptText="Blood Pressure" />
-      <TextArea fx:id="healthConcerns" layoutX="225.0" layoutY="135.0" prefHeight="55.0" prefWidth="150.0" promptText="Health Concerns" />
-      <TextArea fx:id="allergies" layoutX="225.0" layoutY="195.0" prefHeight="175.0" prefWidth="150.0" promptText="Allergies" />
-      <TextArea fx:id="notes" layoutX="425.0" layoutY="135.0" prefHeight="234.0" prefWidth="150.0" promptText="Additional Notes" />
-      <Button fx:id="confirmEntry" layoutX="65.0" layoutY="345.0" mnemonicParsing="false" onAction="#confirmEntry" prefWidth="70.0" style="-fx-background-color: #FFC627;" text="Confirm" />
+      <Separator layoutX="349.0" layoutY="62.0" orientation="VERTICAL" prefHeight="538.0" prefWidth="3.0" />
+      <TextArea fx:id="patientInfo" layoutX="52.0" layoutY="156.0" prefHeight="100.0" prefWidth="246.0" text="Patient Name:&#10;&#10;Date of Birth:&#10;&#10;Phone Number:" />
+      <TextArea layoutX="52.0" layoutY="263.0" prefHeight="211.0" prefWidth="246.0" text="-Immunization&#10;-Previous Medication&#10;-Previous Health Issues" />
+      <TextField fx:id="height" layoutX="400.0" layoutY="155.0" promptText="Height" />
+      <TextField fx:id="temperature" layoutX="400.0" layoutY="193.0" promptText="Temperature" />
+      <TextArea fx:id="healthConcerns" layoutX="400.0" layoutY="228.0" prefHeight="55.0" prefWidth="150.0" promptText="Health Concerns" />
+      <TextArea fx:id="allergies" layoutX="400.0" layoutY="292.0" prefHeight="179.0" prefWidth="150.0" promptText="Allergies" />
+      <TextField fx:id="weight" layoutX="600.0" layoutY="155.0" promptText="Weight" />
+      <TextField fx:id="bloodPressure" layoutX="600.0" layoutY="193.0" promptText="Blood Pressure" />
+      <TextArea fx:id="notes" layoutX="600.0" layoutY="228.0" prefHeight="242.0" prefWidth="150.0" promptText="Additional Notes" />
+      <Button fx:id="confirmEntry" layoutX="543.0" layoutY="508.0" mnemonicParsing="false" onAction="#confirmEntry" prefWidth="70.0" style="-fx-background-color: #FFC627;" text="Confirm" />
    </children>
 </AnchorPane>

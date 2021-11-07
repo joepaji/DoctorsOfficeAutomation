@@ -47,6 +47,8 @@ public class PatientCheckIn implements Initializable{
 	private TextArea allergies;
 	@FXML
 	private TextArea notes;
+	@FXML
+	private TextArea patientInfo;
 	
 	
 	private Stage stage;
@@ -66,10 +68,17 @@ public class PatientCheckIn implements Initializable{
 	public PatientCheckIn()
 	{
 		
+		
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
+	}
+	
+	public void displayInfo() {
+		DoctorNurseActions action = new DoctorNurseActions(username);
+		String patientDetails = action.getPatientInfo();
+		patientInfo.setText(patientDetails);
 	}
 	
 	public void signOut(ActionEvent event) throws IOException

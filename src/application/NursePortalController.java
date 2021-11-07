@@ -120,6 +120,7 @@ public class NursePortalController{
 			//This passes the username of the patient to the patientCheckIn controller
 			PatientCheckIn patientCheckIn = loader.getController();
 			patientCheckIn.setUsername(username);
+			patientCheckIn.displayInfo();
 			
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
 			scene = new Scene(root);
