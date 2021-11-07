@@ -12,22 +12,6 @@ public class DoctorNurseActions {
 		this.username = username;
 	}
 	
-	public void displayPatientHistory() {
-		try {
-			String sql = "";
-			Database database = new Database();
-			Connection c = database.connect();
-			Statement stmt = c.createStatement();
-			ResultSet result = stmt.executeQuery(sql);
-			
-			
-			c.close();
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
 	// Returns patient contact info and history A[0,1]
 	public String[] getPatientInfo() {
 		String patientInfo = "";
@@ -93,7 +77,6 @@ public class DoctorNurseActions {
 				prevMed += "None\n";
 			
 			patientHistory += immunization + currMed + prevMed + healthIssues;
-			
 			
 			c.close();
 		}

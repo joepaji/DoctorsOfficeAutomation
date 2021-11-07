@@ -126,7 +126,8 @@ public class PatientCheckIn implements Initializable{
 		notesData = notes.getText().toString();
 
 		saveEntry();
-		
+		// May change destination later
+		toHome(event);
 	}
 	
 	public void saveEntry() {
