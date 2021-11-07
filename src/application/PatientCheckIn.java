@@ -108,40 +108,45 @@ public class PatientCheckIn implements Initializable{
 		heightData = height.getText().toString();
 		weightData = weight.getText().toString();
 		temperatureData = temperature.getText().toString();
-		bpData = height.getText().toString();
-		healthConcernsData = weight.getText().toString();
-		allergiesData = height.getText().toString();
-		notesData = weight.getText().toString();
-		
-		
-		// test
-		System.out.println(heightData);
-		System.out.println(weightData);
+		bpData = bloodPressure.getText().toString();
+		healthConcernsData = healthConcerns.getText().toString();
+		allergiesData = allergies.getText().toString();
+		notesData = notes.getText().toString();
+
 		saveEntry();
 		
 	}
 	
 	public void saveEntry() {
 		LocalDateTime dateTime = LocalDateTime.now();
-		System.out.println("User is: " + username);
-//		try {
-//			Database db = new Database();
-//			Connection c = db.connect();
-//			Statement stmt = c.createStatement();
-//				
-//			// Insert into table
-//			String sql = "INSERT into visits(height, weight,"
-//					+ "temperature, bp, health_concerns, medications, allergies, nurse_notes,dateTime"; 
-//				
-//			PreparedStatement prepStatement = c.prepareStatement(sql);
-//			
-//			prepStatement.setString(1, heightData);
-//			
-//			
-//		} catch (SQLException e) {	
-//			System.out.println("Error in adding record. Check that all required values are filled out.");
-//			printSQLException(e);
-//		}
+		try {
+			Database db = new Database();
+			Connection c = db.connect();
+				
+			// Insert into table
+			String sql = "INSERT into visits(height, weight, temperature, bp,"
+					+ "health_concerns, allergies, nurse_notes, date_time, username)"
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
+				
+			PreparedStatement prepStatement = c.prepareStatement(sql);
+			
+			prepStatement.setString(1, heightData);
+			prepStatement.setString(2, weightData);
+			prepStatement.setString(3, temperatureData);
+			prepStatement.setString(4, bpData);
+			prepStatement.setString(5, healthConcernsData);
+			prepStatement.setString(6, allergiesData);
+			prepStatement.setString(7, notesData);
+			prepStatement.setObject(8, dateTime);
+			prepStatement.setString(9, username);
+			
+			prepStatement.executeUpdate();
+			
+			c.close();
+		} catch (SQLException e) {	
+			System.out.println("Error in adding record. Check that all required values are filled out.");
+			printSQLException(e);
+		}
 	}
 	
 	public static void printSQLException(SQLException ex) {

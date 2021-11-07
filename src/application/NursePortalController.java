@@ -36,6 +36,10 @@ public class NursePortalController{
 	private TextField lastName;
 	@FXML
 	private TextField dateOfBirth;
+	@FXML
+	private Label searchError;
+	@FXML
+	private Label checkinError;
 	
 	private Stage stage;
 	private Scene scene;
@@ -79,7 +83,8 @@ public class NursePortalController{
 			
 			// search the database for shopping_cart with matching userID
 			String sql = "SELECT * FROM patient WHERE (first_name = '" + firstName.getText().toString() +
-												  "' AND last_name = '" + lastName.getText().toString() + "');";	
+												  "' AND last_name = '" + lastName.getText().toString() + "'"
+												  		+ "AND dob = '" + dateOfBirth.getText().toString()+"');";	
 			ResultSet rs = stmt.executeQuery(sql); 
 			
 			if(rs.next()) {
@@ -89,9 +94,10 @@ public class NursePortalController{
 				// ************** TODO
 				System.out.println(first);
 				System.out.println(last);
+				searchError.setText("");
 				
 			} else {
-				System.out.println("Patient not found");
+				searchError.setText("Patient not found.");
 			}
 				
 		} catch (SQLException e) {	
@@ -102,19 +108,25 @@ public class NursePortalController{
 	
 	public void checkIn(ActionEvent event) throws IOException
 	{
-		//TODO check if username is selected (should be assigned from search function)
-		System.out.println("checkin");
-		destination = "PatientCheckIn.fxml";    //testing
-		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
-		root = loader.load();
-		//This passes the username of the patient to the patientCheckIn controller
-		PatientCheckIn patientCheckIn = loader.getController();
-		patientCheckIn.setUsername(username);
+		//TODO check if username is selected (should be assigned from search function).
+		if(username == null || username == "") {
+			checkinError.setText("Oops, no patients selected.");
+		}
+		else {
+			System.out.println("checkin");
+			destination = "PatientCheckIn.fxml";    //testing
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
+			root = loader.load();
+			//This passes the username of the patient to the patientCheckIn controller
+			PatientCheckIn patientCheckIn = loader.getController();
+			patientCheckIn.setUsername(username);
+			
+			stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
+			scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+		}
 		
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
 	}
 	
 }
