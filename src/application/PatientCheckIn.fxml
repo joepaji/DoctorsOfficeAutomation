@@ -28,7 +28,7 @@
       </Label>
       <Separator layoutX="349.0" layoutY="62.0" orientation="VERTICAL" prefHeight="538.0" prefWidth="3.0" />
       <TextArea fx:id="patientInfo" layoutX="52.0" layoutY="156.0" prefHeight="100.0" prefWidth="246.0" text="Patient Name:&#10;&#10;Date of Birth:&#10;&#10;Phone Number:" />
-      <TextArea layoutX="52.0" layoutY="263.0" prefHeight="211.0" prefWidth="246.0" text="-Immunization&#10;-Previous Medication&#10;-Previous Health Issues" />
+      <TextArea fx:id="patientHistory" layoutX="52.0" layoutY="263.0" prefHeight="211.0" prefWidth="246.0" text="-Immunization&#10;-Previous Medication&#10;-Previous Health Issues" />
       <TextField fx:id="height" layoutX="400.0" layoutY="155.0" promptText="Height" />
       <TextField fx:id="temperature" layoutX="400.0" layoutY="193.0" promptText="Temperature" />
       <TextArea fx:id="healthConcerns" layoutX="400.0" layoutY="228.0" prefHeight="55.0" prefWidth="150.0" promptText="Health Concerns" />

@@ -49,6 +49,8 @@ public class PatientCheckIn implements Initializable{
 	private TextArea notes;
 	@FXML
 	private TextArea patientInfo;
+	@FXML
+	private TextArea patientHistory;
 	
 	
 	private Stage stage;
@@ -77,8 +79,9 @@ public class PatientCheckIn implements Initializable{
 	
 	public void displayInfo() {
 		DoctorNurseActions action = new DoctorNurseActions(username);
-		String patientDetails = action.getPatientInfo();
-		patientInfo.setText(patientDetails);
+		String[] patientDetails = action.getPatientInfo();
+		patientInfo.setText(patientDetails[0]);
+		patientHistory.setText(patientDetails[1]);
 	}
 	
 	public void signOut(ActionEvent event) throws IOException
