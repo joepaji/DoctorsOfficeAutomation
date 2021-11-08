@@ -117,6 +117,16 @@ public class PatientCheckIn implements Initializable{
 		stage.show();
 	}
 	
+	public void toConfirmPage(ActionEvent event) throws IOException
+	{
+		destination = "patientCheckinConfirm.fxml"; 
+		root = FXMLLoader.load(getClass().getResource(destination));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
 	public void confirmEntry(ActionEvent event) throws IOException
 	{
 		heightData = height.getText().toString();
@@ -133,7 +143,7 @@ public class PatientCheckIn implements Initializable{
 		else{
 			saveEntry();
 			// May change destination later
-			toHome(event);
+			toConfirmPage(event);
 		}
 		
 	}
