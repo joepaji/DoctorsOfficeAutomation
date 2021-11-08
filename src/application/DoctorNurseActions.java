@@ -5,11 +5,82 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+// This class contains functions that will be used by both Doctor and Nurse controllers
 public class DoctorNurseActions {
 	private String username;
 	
 	public DoctorNurseActions(String username) {
 		this.username = username;
+	}
+	
+	// Gets the most recent checkin and returns as a string
+	public String getLatestCheckin() {
+		String latestCheckin = "";
+		String firstName = "";
+		String lastName = "";
+		String dob = "";
+		String phone = "";
+		String height = "\n\nHeight: ";
+		String weight = "\nWeight: ";
+		String temp = "\nTemperature: ";
+		String bp = "\nBlood Pressure: ";
+		String allergies = "\n\nAllergies: ";
+		String currMed = "\n\nCurrent Medication: ";
+		String notes = "\n\nNotes: ";
+		
+		
+		try {
+			String sql = "SELECT * from visits WHERE username = '" + username + "'"
+					+ " ORDER by date_time DESC";
+			
+			Database database = new Database();
+			Connection c = database.connect();
+			Statement stmt = c.createStatement(
+				    ResultSet.TYPE_SCROLL_INSENSITIVE,
+				    ResultSet.CONCUR_READ_ONLY
+				);
+			ResultSet result = stmt.executeQuery(sql);
+			
+			if(result.first()) {
+				height += result.getString("height");
+				weight += result.getString("weight");
+				temp += result.getString("temperature");
+				bp += result.getString("bp");
+				if(result.getString("nurse_notes").isBlank())
+					notes += "None";
+				else notes += result.getString("nurse_notes");
+				if(result.getString("allergies").isBlank())
+					allergies += "None";
+				else allergies += result.getString("allergies");
+			}
+			
+			sql = "SELECT first_name, last_name, dob, phone, curr_med "
+					+ "from patient WHERE username = '" + username + "'";
+			result = stmt.executeQuery(sql);
+			
+			if(result.first()) {
+				firstName = result.getString("first_name");
+				lastName = result.getString("last_name");
+				dob = result.getString("dob");
+				phone = result.getString("phone");
+				
+				if(result.getString("curr_med").isBlank())
+					currMed += "None";
+				else currMed += result.getString("curr_med");
+			}
+			
+			latestCheckin += "Patient Name: " + firstName + " " + lastName;
+			latestCheckin += "\nDate of Birth: " + dob;
+			latestCheckin += "\nPhone Number: " + phone;
+			latestCheckin += height + weight + temp + bp + allergies + currMed + notes;
+			
+			c.close();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return latestCheckin;
 	}
 	
 	// Returns patient contact info and history A[0,1]

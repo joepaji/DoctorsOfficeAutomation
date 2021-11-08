@@ -21,13 +21,13 @@
             <Button fx:id="toHome" layoutX="553.0" layoutY="19.0" mnemonicParsing="false" prefWidth="70.0" style="-fx-background-color: #FFC627; -fx-max-width: 68;" text="Home" />
          </children>
       </AnchorPane>
-      <Separator layoutX="223.0" layoutY="199.0" minHeight="215.0" orientation="VERTICAL" prefHeight="133.0" prefWidth="202.0" />
+      <Separator layoutX="223.0" layoutY="192.0" minHeight="215.0" orientation="VERTICAL" prefHeight="222.0" prefWidth="202.0" />
       <Label layoutX="113.0" layoutY="229.0" text="Patient Search">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="512.0" layoutY="166.0" text="Previous Check in">
+      <Label layoutX="513.0" layoutY="154.0" text="Previous Check in">
          <font>
             <Font size="16.0" />
          </font>
@@ -38,7 +38,7 @@
             <Font size="10.0" />
          </font>
       </Button>
-      <TextArea editable="false" layoutX="425.0" layoutY="192.0" prefHeight="230.0" prefWidth="300.0" text="Patient Name:&#10;Date of Birth:&#10;Phone Number:&#10;&#10;Height:&#10;Weight:&#10;Temperature:&#10;Blood Pressure:&#10;&#10;Allergies:&#10;&#10;Current Medication: " />
+      <TextArea fx:id="prevCheckin" editable="false" layoutX="425.0" layoutY="179.0" prefHeight="243.0" prefWidth="300.0" text="Patient Name:&#10;Date of Birth:&#10;Phone Number:&#10;&#10;Height:&#10;Weight:&#10;Temperature:&#10;Blood Pressure:&#10;&#10;Allergies:&#10;&#10;Current Medication: &#10;&#10;Notes: " />
       <TextField fx:id="firstName" layoutX="87.0" layoutY="257.0" promptText="First Name" />
       <TextField fx:id="lastName" layoutX="88.0" layoutY="287.0" promptText="Last Name" />
       <TextField fx:id="dateOfBirth" layoutX="88.0" layoutY="317.0" promptText="Date of Birth" />

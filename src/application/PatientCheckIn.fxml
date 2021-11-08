@@ -31,11 +31,16 @@
       <TextArea fx:id="patientHistory" layoutX="52.0" layoutY="263.0" prefHeight="211.0" prefWidth="246.0" text="-Immunization&#10;-Previous Medication&#10;-Previous Health Issues" />
       <TextField fx:id="height" layoutX="400.0" layoutY="155.0" promptText="Height" />
       <TextField fx:id="temperature" layoutX="400.0" layoutY="193.0" promptText="Temperature" />
-      <TextArea fx:id="healthConcerns" layoutX="400.0" layoutY="228.0" prefHeight="55.0" prefWidth="150.0" promptText="Health Concerns" />
-      <TextArea fx:id="allergies" layoutX="400.0" layoutY="292.0" prefHeight="179.0" prefWidth="150.0" promptText="Allergies" />
+      <TextArea fx:id="healthConcerns" layoutX="400.0" layoutY="228.0" prefHeight="55.0" prefWidth="150.0" promptText="Health Concerns" wrapText="true" />
+      <TextArea fx:id="allergies" layoutX="400.0" layoutY="292.0" prefHeight="179.0" prefWidth="150.0" promptText="Allergies" wrapText="true" />
       <TextField fx:id="weight" layoutX="600.0" layoutY="155.0" promptText="Weight" />
       <TextField fx:id="bloodPressure" layoutX="600.0" layoutY="193.0" promptText="Blood Pressure" />
-      <TextArea fx:id="notes" layoutX="600.0" layoutY="228.0" prefHeight="242.0" prefWidth="150.0" promptText="Additional Notes" />
+      <TextArea fx:id="notes" layoutX="600.0" layoutY="228.0" prefHeight="242.0" prefWidth="150.0" promptText="Additional Notes" wrapText="true" />
       <Button fx:id="confirmEntry" layoutX="543.0" layoutY="508.0" mnemonicParsing="false" onAction="#confirmEntry" prefWidth="70.0" style="-fx-background-color: #FFC627;" text="Confirm" />
+      <Label fx:id="checkinError" alignment="CENTER" layoutX="453.0" layoutY="484.0" prefWidth="250.0" textFill="RED">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

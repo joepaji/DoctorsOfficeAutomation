@@ -40,6 +40,8 @@ public class NursePortalController{
 	private Label searchError;
 	@FXML
 	private Label checkinError;
+	@FXML
+	private TextArea prevCheckin;
 	
 	private Stage stage;
 	private Scene scene;
@@ -95,7 +97,7 @@ public class NursePortalController{
 				System.out.println(first);
 				System.out.println(last);
 				searchError.setText("");
-				
+				displayLastCheckin();
 			} else {
 				searchError.setText("Patient not found.");
 			}
@@ -128,6 +130,11 @@ public class NursePortalController{
 			stage.show();
 		}
 		
+	}
+	
+	public void displayLastCheckin() {
+		DoctorNurseActions actions = new DoctorNurseActions(username);
+		prevCheckin.setText(actions.getLatestCheckin());
 	}
 	
 }

@@ -51,6 +51,8 @@ public class PatientCheckIn implements Initializable{
 	private TextArea patientInfo;
 	@FXML
 	private TextArea patientHistory;
+	@FXML
+	private Label checkinError;
 	
 	
 	private Stage stage;
@@ -124,10 +126,16 @@ public class PatientCheckIn implements Initializable{
 		healthConcernsData = healthConcerns.getText().toString();
 		allergiesData = allergies.getText().toString();
 		notesData = notes.getText().toString();
-
-		saveEntry();
-		// May change destination later
-		toHome(event);
+		
+		if(isFieldEmpty(heightData, weightData, temperatureData, bpData, healthConcernsData))
+			checkinError.setText("Oops, you missed some required fields.");
+		
+		else{
+			saveEntry();
+			// May change destination later
+			toHome(event);
+		}
+		
 	}
 	
 	public void saveEntry() {
@@ -180,5 +188,13 @@ public class PatientCheckIn implements Initializable{
 	
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	
+	public static boolean isFieldEmpty(String... strings) {
+		for(String s : strings) 
+			if(s == null || s.isEmpty()) 
+				return true;
+				
+		return false;
 	}
 }
