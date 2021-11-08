@@ -12,9 +12,9 @@
    <children>
       <AnchorPane prefHeight="62.0" prefWidth="600.0" style="-fx-background-color: #8c1d40;">
          <children>
-            <Button layoutX="508.0" layoutY="19.0" mnemonicParsing="false" prefWidth="70.0" style="-fx-background-color: #FFC627; -fx-max-width: 68;" text="Sign Out" />
-            <Button layoutX="428.0" layoutY="19.0" mnemonicParsing="false" prefWidth="70.0" style="-fx-background-color: #FFC627; -fx-max-width: 68;" text="Messages" />
-            <Button layoutX="349.0" layoutY="19.0" mnemonicParsing="false" prefWidth="70.0" style="-fx-background-color: #FFC627; -fx-max-width: 68;" text="Home" />
+            <Button fx:id="signOut" layoutX="508.0" layoutY="19.0" mnemonicParsing="false" onAction="#signOut" prefWidth="70.0" style="-fx-background-color: #FFC627; -fx-max-width: 68;" text="Sign Out" />
+            <Button fx:id="messages" layoutX="428.0" layoutY="19.0" mnemonicParsing="false" onAction="#toMessages" prefWidth="70.0" style="-fx-background-color: #FFC627; -fx-max-width: 68;" text="Messages" />
+            <Button fx:id="home" layoutX="349.0" layoutY="19.0" mnemonicParsing="false" prefWidth="70.0" style="-fx-background-color: #FFC627; -fx-max-width: 68;" text="Home" />
          </children>
       </AnchorPane>
       <Separator layoutX="157.0" layoutY="135.0" minHeight="215.0" orientation="VERTICAL" prefHeight="133.0" prefWidth="202.0" />
@@ -28,15 +28,25 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Button layoutX="96.0" layoutY="270.0" mnemonicParsing="false" prefWidth="70.0" style="-fx-background-color: #FFC627; -fx-max-width: 68;" text="Search" />
-      <Button layoutX="391.0" layoutY="350.0" mnemonicParsing="false" prefWidth="70.0" style="-fx-background-color: #FFC627; -fx-max-width: 68;" text="Begin Exam">
+      <Button fx:id="search" layoutX="96.0" layoutY="270.0" mnemonicParsing="false" onAction="#search" prefWidth="70.0" style="-fx-background-color: #FFC627; -fx-max-width: 68;" text="Search" />
+      <Button fx:id="beginExam" layoutX="388.0" layoutY="358.0" mnemonicParsing="false" onAction="#beginExam" prefWidth="70.0" style="-fx-background-color: #FFC627; -fx-max-width: 68;" text="Begin Exam">
          <font>
             <Font size="10.0" />
          </font>
       </Button>
-      <TextArea layoutX="275.0" layoutY="106.0" prefHeight="230.0" prefWidth="300.0" text="Patient Name:&#10;Date of Birth:&#10;Phone Number:&#10;&#10;Height:&#10;Weight:&#10;Temperature:&#10;Blood Pressure:&#10;&#10;Allergies:&#10;&#10;Current Medication: " />
-      <TextField layoutX="54.0" layoutY="180.0" promptText="First Name" />
-      <TextField layoutX="55.0" layoutY="210.0" promptText="Last Name" />
-      <TextField layoutX="55.0" layoutY="240.0" promptText="Date of Birth" />
+      <TextArea fx:id="checkInSummary" layoutX="275.0" layoutY="106.0" prefHeight="230.0" prefWidth="300.0" text="Patient Name:&#10;Date of Birth:&#10;Phone Number:&#10;&#10;Height:&#10;Weight:&#10;Temperature:&#10;Blood Pressure:&#10;&#10;Allergies:&#10;&#10;Current Medication: " />
+      <TextField fx:id="firstName" layoutX="54.0" layoutY="180.0" promptText="First Name" />
+      <TextField fx:id="lastName" layoutX="55.0" layoutY="210.0" promptText="Last Name" />
+      <TextField fx:id="dateOfBirth" layoutX="55.0" layoutY="240.0" promptText="Date of Birth" />
+      <Label fx:id="searchError" alignment="CENTER" layoutX="54.0" layoutY="309.0" prefWidth="150.0" textFill="RED">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="examError" alignment="CENTER" layoutX="337.0" layoutY="338.0" prefHeight="15.0" prefWidth="170.0" textFill="RED">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
