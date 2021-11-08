@@ -119,6 +119,7 @@ public class NursePortalController{
 			destination = "PatientCheckIn.fxml";    //testing
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
 			root = loader.load();
+			
 			//This passes the username of the patient to the patientCheckIn controller
 			PatientCheckIn patientCheckIn = loader.getController();
 			patientCheckIn.setUsername(username);
