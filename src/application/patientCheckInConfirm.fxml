@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.patientCheckinConfirmation">
+   <children>
+      <AnchorPane prefHeight="600.0" prefWidth="800.0">
+         <children>
+            <AnchorPane prefHeight="62.0" prefWidth="800.0" style="-fx-background-color: #8C1D40;" />
+            <Text layoutX="226.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your checkin has been accepted, thank you!">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="276.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please confirm to go back to the patient portal" />
+            <Button fx:id="confirm" layoutX="374.0" layoutY="177.0" mnemonicParsing="false" onAction="#backToNursePortal" style="-fx-background-color: #FFC627;" text="Confirm" />
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>
-
