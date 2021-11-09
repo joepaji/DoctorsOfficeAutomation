@@ -78,7 +78,7 @@ public class PatientExamController {
 	
 	public void toHome(ActionEvent event) throws IOException
 	{
-		destination = "DoctorsPortal.fxml"; 
+		destination = "DoctorPortal.fxml"; 
 		root = FXMLLoader.load(getClass().getResource(destination));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
 		scene = new Scene(root);
@@ -101,7 +101,29 @@ public class PatientExamController {
 	}
 	
 	public void saveEntry() {
-		
+		try {
+			String notes=inputNotes.getText().toString();;
+			String medications=inputPrescription.getText().toString();
+			String date_time="";
+			Database db = new Database();
+			Connection c = db.connect();
+			String sql= "SELECT date_time FROM visits ORDER BY date_time DESC";
+			Statement stmt = c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+			ResultSet result = stmt.executeQuery(sql);
+			if(result.first()) {
+				date_time = result.getString("date_time");
+			}
+			sql="UPDATE visits SET doctor_notes='"+notes+"',medications='"+medications+"'WHERE date_time='"+date_time+"'";
+			PreparedStatement prepStatement = c.prepareStatement(sql);
+			prepStatement.executeUpdate();
+			sql="UPDATE patient SET curr_med='"+medications+"' WHERE username='"+username+"'";
+			prepStatement = c.prepareStatement(sql);
+			prepStatement.executeUpdate();
+			c.close();
+		} catch (SQLException e) {	
+			System.out.println("Error in adding record. Check that all required values are filled out.");
+			e.printStackTrace();
+		}
 	}
 	
 	

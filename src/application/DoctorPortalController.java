@@ -119,6 +119,7 @@ public class DoctorPortalController{
 			
 			PatientExamController patientExamController = loader.getController();
 			patientExamController.setUsername(username);
+			System.out.println(username);
 			patientExamController.displayPrevCheckIn();
 			
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
