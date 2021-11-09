@@ -52,8 +52,7 @@ public class PatientExamController {
 	
 	public void displayPrevCheckIn() {
 		DoctorNurseActions action = new DoctorNurseActions(username);
-		String patientDetails = action.getLatestCheckin();
-		prevCheckIn.setText(patientDetails);
+		prevCheckIn.setText(action.getLatestCheckin());
 	}
 	
 	public void signOut(ActionEvent event) throws IOException

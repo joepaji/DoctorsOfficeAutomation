@@ -16,7 +16,7 @@
             <Button fx:id="toHome" layoutX="553.0" layoutY="19.0" mnemonicParsing="false" prefWidth="70.0" style="-fx-background-color: #FFC627; -fx-max-width: 68;" text="Home" />
          </children>
       </AnchorPane>
-      <TextArea fx:id="prevCheckin" editable="false" layoutX="50.0" layoutY="168.0" prefHeight="345.0" prefWidth="300.0" text="Patient Name:&#10;Date of Birth:&#10;Phone Number:&#10;&#10;Height:&#10;Weight:&#10;Temperature:&#10;Blood Pressure:&#10;&#10;Allergies:&#10;&#10;Current Medication: &#10;&#10;Notes: " />
+      <TextArea fx:id="prevCheckIn" editable="false" layoutX="50.0" layoutY="168.0" prefHeight="345.0" prefWidth="300.0" text="Patient Name:&#10;Date of Birth:&#10;Phone Number:&#10;&#10;Height:&#10;Weight:&#10;Temperature:&#10;Blood Pressure:&#10;&#10;Allergies:&#10;&#10;Current Medication: &#10;&#10;Notes: " />
       <Label layoutX="143.0" layoutY="114.0" text="Patient Exam">
          <font>
             <Font size="20.0" />
