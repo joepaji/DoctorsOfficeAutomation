@@ -25,7 +25,7 @@ public class DoctorPortalController{
 	@FXML
 	private Button toHome;
 	@FXML
-	private Button checkIn;
+	private Button beginExam;
 	@FXML
 	private Button search;
 	@FXML
@@ -112,7 +112,7 @@ public class DoctorPortalController{
 		if(username == null || username == "") {
 			checkinError.setText("Oops, no patients selected.");
 		}else {
-			System.out.println("checkin");
+			System.out.println("begin exam");
 			destination = "PatientExam.fxml";    //testing
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
 			root = loader.load();

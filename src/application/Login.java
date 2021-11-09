@@ -53,7 +53,7 @@ public class Login {
 		
 		String destination = "";
 		
-		loginType = 2;
+		loginType = 3;
 		
 		switch(loginType) // this switch will determine what the outcome of the authenticator was
 		{

@@ -19,7 +19,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
 
-public class PatientExamController implements Initializable {
+public class PatientExamController {
 
 	@FXML
 	private Button signOut;
