@@ -48,6 +48,7 @@ public class NursePortalController{
 	private Parent root;
 	private String destination;
 	private String username;
+	private int userID;
 	
 	public NursePortalController()
 	{
@@ -66,9 +67,17 @@ public class NursePortalController{
 	
 	public void toMessages(ActionEvent event) throws IOException
 	{
-		//destination = "Messages.fxml";
-		destination = "login.fxml";    //testing
-		root = FXMLLoader.load(getClass().getResource(destination));
+		
+		destination = "Messenger.fxml";   
+		//root = FXMLLoader.load(getClass().getResource(destination));
+		//stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
+		root = loader.load();
+		
+		//This passes the userID of the user to the messenger controller
+		MessengerController messenger = loader.getController();
+		messenger.setUserID(1);
+		messenger.displayMessages(); // needs to be done
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
 		scene = new Scene(root);
 		stage.setScene(scene);
@@ -115,8 +124,8 @@ public class NursePortalController{
 			checkinError.setText("Oops, no patients selected.");
 		}
 		else {
-			System.out.println("checkin");
-			destination = "PatientCheckIn.fxml";    //testing
+			System.out.println("checkin");	 //testing
+			destination = "PatientCheckIn.fxml";   
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
 			root = loader.load();
 			
@@ -132,6 +141,9 @@ public class NursePortalController{
 		}
 		
 	}
+	
+
+	
 	
 	public void displayLastCheckin() {
 		DoctorNurseActions actions = new DoctorNurseActions(username);
