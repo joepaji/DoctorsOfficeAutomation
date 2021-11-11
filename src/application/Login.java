@@ -53,7 +53,6 @@ public class Login {
 		
 		String destination = "";
 		
-		loginType = 3;
 		
 		switch(loginType) // this switch will determine what the outcome of the authenticator was
 		{
@@ -61,7 +60,7 @@ public class Login {
 				wrongLogin.setText("Incorrect username/password. Please try again.");
 				break;
 				
-			case 1 : destination = "Patient Portal.fxml";
+			case 1 : destination = "PatientPortal.fxml";
 				break;
 				
 			case 2 : destination = "NursePortal.fxml";	
@@ -73,17 +72,33 @@ public class Login {
 		}
 		
 		// open the proper scene depending on userType
-		if(destination != "")  // make sure there was a valid destination
+		if(destination != "" /*&& destination != "DoctorPortal.fxml"*/)  // make sure there was a valid destination
 		{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
 			root = loader.load();
+			//PatientPortalController ppc = loader.getController();
+			//ppc.setUsername(usernameData);
+			//ppc.lastVisitSummary();
 			//root = FXMLLoader.load(getClass().getResource(destination));		
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
 			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
-		}
-		
+			
+			
+		}/*
+		else if (destination.equals("PatientPortal.fxml")) {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
+			root = loader.load();
+			PatientPortalController patient = loader.getController();
+			patient.setUsername(usernameData);
+			patient.lastVisitSummary();
+			//root = FXMLLoader.load(getClass().getResource(destination));		
+			stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
+			scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+		}*/
 	}
 	
 	public void userCreateAccount(ActionEvent event) throws IOException {
@@ -128,5 +143,11 @@ public class Login {
 		}
 	}
 	
+	/*
+	public void displayLastCheckIn() {
+		DoctorNurseActions actions = new DoctorNurseActions(usernameData);
+		lastVisitSummary.setText(actions.getLatestCheckin());
+	}
+	*/
 
 }
