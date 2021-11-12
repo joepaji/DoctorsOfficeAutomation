@@ -53,7 +53,7 @@ public class Login {
 		
 		String destination = "";
 		
-		loginType = 2;
+		
 		
 		switch(loginType) // this switch will determine what the outcome of the authenticator was
 		{
@@ -61,23 +61,44 @@ public class Login {
 				wrongLogin.setText("Incorrect username/password. Please try again.");
 				break;
 				
-			case 1 : destination = "Patient Portal.fxml";
+			case 1 : destination = "PatientPortal.fxml";  
+			
+				//This passes the username of the patient to the patientCheckIn controller
+				FXMLLoader patientLoader = new FXMLLoader(getClass().getResource(destination));
+				root = patientLoader.load();
+				
+				PatientPortalController patientPortal = patientLoader.getController();
+				patientPortal.setUsername(usernameData);
+			
 				break;
 				
 			case 2 : destination = "NursePortal.fxml";	
-
+			
+				//This passes the username of the patient to the patientCheckIn controller
+				FXMLLoader nurseLoader = new FXMLLoader(getClass().getResource(destination));
+				root = nurseLoader.load();
+			
+				NursePortalController nursePortal = nurseLoader.getController();
+				nursePortal.setUsername(usernameData);
+				
 				break;
 				
 			case 3 : destination = "DoctorPortal.fxml";
+				
+				//This passes the username of the patient to the patientCheckIn controller
+				FXMLLoader doctorLoader = new FXMLLoader(getClass().getResource(destination));
+				root = doctorLoader.load();
+		
+				DoctorPortalController doctorPortal = doctorLoader.getController();
+				//doctorPortal.setUsername(usernameData);
+			
 				break;
+				
 		}
 		
 		// open the proper scene depending on userType
 		if(destination != "")  // make sure there was a valid destination
-		{
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
-			root = loader.load();
-			//root = FXMLLoader.load(getClass().getResource(destination));		
+		{	
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
 			scene = new Scene(root);
 			stage.setScene(scene);
@@ -104,7 +125,11 @@ public class Login {
 			
 			// make sure the username is unique 
 			String sql1 = "SELECT * FROM patient WHERE username = '"+ pUsername +"';";
-			ResultSet rs1 = stmt.executeQuery(sql1);
+			String sql2 = "SELECT * FROM staff WHERE username = '"+ pUsername +"';";
+			
+			ResultSet rs1 = stmt.executeQuery(sql2);
+		//	ResultSet rs2 = stmt.executeQuery(sql2);
+			
 			c.close();
 			
 			String pass = "";

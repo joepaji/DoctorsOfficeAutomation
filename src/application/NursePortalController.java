@@ -76,8 +76,8 @@ public class NursePortalController{
 		
 		//This passes the userID of the user to the messenger controller
 		MessengerController messenger = loader.getController();
-		messenger.setUserID(1);
-		messenger.displayMessages(); // needs to be done
+		messenger.setUsername(username);
+		messenger.displayMessages(); 
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
 		scene = new Scene(root);
 		stage.setScene(scene);
@@ -143,7 +143,9 @@ public class NursePortalController{
 	}
 	
 
-	
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	
 	public void displayLastCheckin() {
 		DoctorNurseActions actions = new DoctorNurseActions(username);

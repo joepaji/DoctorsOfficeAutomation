@@ -78,7 +78,7 @@ public class MessengerController implements Initializable{
 	public void displayMessages()
 	{
 		try {
-			String sql = "SELECT * FROM messages WHERE (receiver_id = "+ userID +" or sender_id = "+ userID +");";
+			String sql = "SELECT * FROM messages WHERE (receiver_username = '"+ username +"' or sender_username = '"+ username +"');";
 			
 			Database database = new Database();
 			Connection c = database.connect();
@@ -111,8 +111,5 @@ public class MessengerController implements Initializable{
 		this.username = username;
 	}
 	
-	public void setUserID(int userID) {
-		this.userID = userID;
-	}
 	
 }
