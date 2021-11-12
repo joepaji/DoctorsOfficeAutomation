@@ -22,7 +22,7 @@ import java.sql.Statement;
 
 import java.io.IOException;
 
-public class PatientPortalController {
+public class PatientPortalController implements Initializable{
 
 	//Variables for FXML
 	@FXML
@@ -48,14 +48,19 @@ public class PatientPortalController {
 	private String username;
 	
 	//Default constructor
-	public PatientPortalController(String username) {
+	public PatientPortalController() {
 
 	}
 	
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		
+	}
+	
 	
 	//Code for text areas
 	//Shows patient's last visit summary

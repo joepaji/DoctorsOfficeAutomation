@@ -76,10 +76,10 @@ public class Login {
 		{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
 			root = loader.load();
-			//PatientPortalController ppc = loader.getController();
-			//ppc.setUsername(usernameData);
-			//ppc.lastVisitSummary();
-			//root = FXMLLoader.load(getClass().getResource(destination));		
+			PatientPortalController ppc = loader.getController();
+			ppc.setUsername(usernameData);
+			ppc.lastVisitSummary();
+//			root = FXMLLoader.load(getClass().getResource(destination));		
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
 			scene = new Scene(root);
 			stage.setScene(scene);
