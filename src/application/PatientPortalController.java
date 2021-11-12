@@ -72,10 +72,45 @@ public class PatientPortalController implements Initializable{
 	//Shows patient's contact summary
 	public void patientContactinfo() {
 		String patientInfo = "";
-		String fName, lName, dob, address, city, state, phoneNum, emailAddress;
+		String fName, lName, dob, phoneNum, emailAddress;
 		
-		//
+		//PostGreSQL
+		try {
+			String sql = "SELECT first_name, last_name, dob, phone, email "
+					+ " FROM patient"
+					+ " WHERE username = '" + username + "';";
+			
+			Database database = new Database();
+			Connection c = database.connect();
+			Statement stmt = c.createStatement(
+				    ResultSet.TYPE_SCROLL_INSENSITIVE,
+				    ResultSet.CONCUR_READ_ONLY
+				);
+			ResultSet result = stmt.executeQuery(sql);
+			
+			if(result.first()) {
+				// Get contact information
+				fName = result.getString("first_name");
+				lName = result.getString("last_name");
+				dob = result.getString("dob");
+				phoneNum = result.getString("phone");
+				emailAddress = result.getString("email");
+				
+				//Concatination of strings
+				patientInfo += "First Name: " + fName;
+				patientInfo += "\nLast Name: " + lName;
+				patientInfo += "\nDate of Birth: " + dob;
+				patientInfo += "\nPhone Number: " + phoneNum;
+				patientInfo += "\nEmail Address: " + emailAddress;
+			}
+						
+			c.close();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
 	
+		contactInfo.setText(patientInfo);
 	}
 	
 	
@@ -92,8 +127,7 @@ public class PatientPortalController implements Initializable{
 	
 	//Visits button for the patient
 	public void patientVisits(ActionEvent event) throws IOException {
-		//destination = "Visits.fxml";
-		destination = "login.fxml";    //CHANGE LATER
+		destination = "Visits.fxml";
 		root = FXMLLoader.load(getClass().getResource(destination));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();  
 		scene = new Scene(root);
@@ -103,8 +137,7 @@ public class PatientPortalController implements Initializable{
 	
 	//Messages button for the patients
 	public void patientMessages(ActionEvent event) throws IOException {
-		//destination = "Messages.fxml";
-		destination = "login.fxml";    //CHANGE LATER
+		destination = "Messages.fxml";
 		root = FXMLLoader.load(getClass().getResource(destination));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow(); 
 		scene = new Scene(root);

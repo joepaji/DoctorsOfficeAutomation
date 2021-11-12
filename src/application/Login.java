@@ -79,26 +79,15 @@ public class Login {
 			PatientPortalController ppc = loader.getController();
 			ppc.setUsername(usernameData);
 			ppc.lastVisitSummary();
-//			root = FXMLLoader.load(getClass().getResource(destination));		
-			stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
-			scene = new Scene(root);
-			stage.setScene(scene);
-			stage.show();
-			
-			
-		}/*
-		else if (destination.equals("PatientPortal.fxml")) {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
-			root = loader.load();
-			PatientPortalController patient = loader.getController();
-			patient.setUsername(usernameData);
-			patient.lastVisitSummary();
+			ppc.patientContactinfo();
 			//root = FXMLLoader.load(getClass().getResource(destination));		
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
 			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
-		}*/
+			
+			
+		}
 	}
 	
 	public void userCreateAccount(ActionEvent event) throws IOException {
@@ -142,12 +131,5 @@ public class Login {
 			return -1; // error code
 		}
 	}
-	
-	/*
-	public void displayLastCheckIn() {
-		DoctorNurseActions actions = new DoctorNurseActions(usernameData);
-		lastVisitSummary.setText(actions.getLatestCheckin());
-	}
-	*/
 
 }
