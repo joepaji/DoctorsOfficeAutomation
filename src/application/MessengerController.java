@@ -29,9 +29,11 @@ public class MessengerController implements Initializable{
 	@FXML
 	private Button sendMessage;
 	@FXML
-	private TextField recipientID;
+	private TextField recipientFirst;
 	@FXML
-	private TextField subject;
+	private TextField recipientLast;
+	@FXML
+	private TextField date;
 	@FXML
 	private TextField messageBody;
 	@FXML
@@ -41,8 +43,14 @@ public class MessengerController implements Initializable{
 	private Scene scene;
 	private Parent root;
 	private String destination;
-	private String username;
+	public String username;
 	private int userID;
+	private String first;
+	private String last;
+	private String recipientFirstName;
+	private String recipientLastName;
+	private String dateString;
+	private String message;
 	
 	public MessengerController()
 	{
@@ -75,25 +83,75 @@ public class MessengerController implements Initializable{
 		stage.show();
 	}
 	
-	public void displayMessages()
+	public void sendMessage(ActionEvent event) throws IOException
 	{
+		
+		recipientFirstName = recipientFirst.getText().toString();
+		recipientLastName = recipientLast.getText().toString();
+		dateString = date.getText().toString();
+		message = messageBody.getText().toString();
 		try {
-			String sql = "SELECT * FROM messages WHERE (receiver_username = '"+ username +"' or sender_username = '"+ username +"');";
+			String sql = "INSERT INTO messages(receiver_first, receiver_last, sender_first, sender_last, date, message_body)"
+				 	   + "VALUES('"+ recipientFirstName +"', '"+ recipientLastName +"', '"+ first +"', '"+ last +"', '"+ dateString +"', '"+ message +"');";
 			
 			Database database = new Database();
 			Connection c = database.connect();
 			Statement stmt = c.createStatement(
 				    ResultSet.TYPE_SCROLL_INSENSITIVE,
 				    ResultSet.CONCUR_READ_ONLY
-				);
+			);
+			
+			stmt.executeUpdate(sql);
+			
+			/*if(result.first())
+			{
+				System.out.println("successfully sent message");
+			}
+			else 
+			{
+				System.out.println("error sending message");
+			}*/
+			
+			displayMessages();
+			
+			
+			c.close();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void displayMessages()
+	{
+		try {
+			System.out.println("first: " + first);
+			System.out.println("last: " + last);
+			String sql = "SELECT * FROM messages WHERE ( (receiver_first = '"+ first +"' and receiver_last = '"+ last +"') or "
+													  + "(sender_first = '"+ first +"' and sender_last = '"+ last +"') );";
+			
+			Database database = new Database();
+			Connection c = database.connect();
+			Statement stmt = c.createStatement(
+				    ResultSet.TYPE_SCROLL_INSENSITIVE,
+				    ResultSet.CONCUR_READ_ONLY
+			);
+			
 			ResultSet result = stmt.executeQuery(sql);
 			String output = "";
-			while(result.next())
+			
+			
+			if(result.last())
 			{
-				output += "Sender:\t\t" + result.getString(1) + "\n";
-				output += "Recipient:\t " + result.getString(2) + "\n";
-				output += "Date:\t" + result.getString(4) + "\n\n";
-				output += "Message:\t" + result.getString(3) + "\n\n";
+				
+			}
+			
+			while(result.previous())
+			{
+				output += "Sender:\t\t" + result.getString(3) + " " + result.getString(4) + "\n";
+				output += "Recipient:\t" + result.getString(5) + " " + result.getString(6) + "\n";
+				output += "Date:\t\t" + result.getString(2) + "\n\n";
+				output += "Message:\t" + result.getString(1) + "\n\n";
 				output += "---------------------------------------------------------\n";
 				
 			}
@@ -107,6 +165,35 @@ public class MessengerController implements Initializable{
 			e.printStackTrace();
 		}
 	}
+	
+	public void setSelfFirstLast()
+	{
+		try {
+			String sql = "SELECT * FROM staff WHERE (username = '"+ username +"');";
+			
+			Database database = new Database();
+			Connection c = database.connect();
+			Statement stmt = c.createStatement(
+				    ResultSet.TYPE_SCROLL_INSENSITIVE,
+				    ResultSet.CONCUR_READ_ONLY
+			);
+			
+			ResultSet result = stmt.executeQuery(sql);
+			
+			if(result.next())
+			{
+				this.first = result.getString("first_name");
+				this.last = result.getString("last_name");
+			}
+			
+			
+			c.close();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void setUsername(String username) {
 		this.username = username;
 	}

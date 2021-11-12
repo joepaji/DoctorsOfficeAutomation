@@ -21,9 +21,9 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Button fx:id="sendMessage" layoutX="123.0" layoutY="471.0" maxWidth="170.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="170.0" style="-fx-background-color: #FFC627; -fx-max-width: 120;" text="Send Message" />
-      <TextField fx:id="recipientID" layoutX="39.0" layoutY="253.0" prefHeight="26.0" prefWidth="287.0" promptText="Recipient" />
-      <TextField fx:id="subject" layoutX="39.0" layoutY="287.0" prefHeight="26.0" prefWidth="287.0" promptText="Subject" />
+      <Button fx:id="sendMessage" layoutX="123.0" layoutY="471.0" maxWidth="170.0" mnemonicParsing="false" onAction="#sendMessage" prefHeight="26.0" prefWidth="170.0" style="-fx-background-color: #FFC627; -fx-max-width: 120;" text="Send Message" />
+      <TextField fx:id="recipientFirst" layoutX="39.0" layoutY="229.0" prefHeight="26.0" prefWidth="287.0" promptText="Recipient First Name" />
+      <TextField fx:id="recipientLast" layoutX="39.0" layoutY="261.0" prefHeight="26.0" prefWidth="287.0" promptText="Recipient Last Name" />
       <TextField fx:id="messageBody" alignment="TOP_LEFT" layoutX="39.0" layoutY="325.0" prefHeight="131.0" prefWidth="287.0" promptText="Message" />
       <Label layoutX="482.0" layoutY="104.0" text="Recent Messages">
          <font>
@@ -31,5 +31,6 @@
          </font>
       </Label>
       <TextArea fx:id="recentMessages" layoutX="372.0" layoutY="143.0" minHeight="150.0" minWidth="250.0" prefHeight="341.0" prefWidth="354.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&#10;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&#10;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&#10;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&#10;" wrapText="true" />
+      <TextField fx:id="date" layoutX="39.0" layoutY="293.0" prefHeight="26.0" prefWidth="287.0" promptText="Date &quot;12/30/21&quot;" />
    </children>
 </AnchorPane>

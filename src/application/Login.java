@@ -124,7 +124,7 @@ public class Login {
 			Statement stmt = c.createStatement();
 			
 			// make sure the username is unique 
-			String sql1 = "SELECT * FROM patient WHERE username = '"+ pUsername +"';";
+			String sql1 = "SELECT * FROM patient, staff WHERE username = '"+ pUsername +"';";
 			String sql2 = "SELECT * FROM staff WHERE username = '"+ pUsername +"';";
 			
 			ResultSet rs1 = stmt.executeQuery(sql2);

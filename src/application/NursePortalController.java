@@ -77,7 +77,10 @@ public class NursePortalController{
 		//This passes the userID of the user to the messenger controller
 		MessengerController messenger = loader.getController();
 		messenger.setUsername(username);
+		System.out.println(messenger.username);
+		messenger.setSelfFirstLast();
 		messenger.displayMessages(); 
+		
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
 		scene = new Scene(root);
 		stage.setScene(scene);
@@ -92,7 +95,7 @@ public class NursePortalController{
 			Connection c = db.connect();
 			Statement stmt = c.createStatement();
 			
-			// search the database for shopping_cart with matching userID
+			// search the database for entry with matching userID
 			String sql = "SELECT * FROM patient WHERE (first_name = '" + firstName.getText().toString() +
 												  "' AND last_name = '" + lastName.getText().toString() + "'"
 												  		+ "AND dob = '" + dateOfBirth.getText().toString()+"');";	
