@@ -102,7 +102,7 @@ public class PatientExamController {
 	
 	public void saveEntry() {
 		try {
-			String notes=inputNotes.getText().toString();;
+			String notes=inputNotes.getText().toString();
 			String medications=inputPrescription.getText().toString();
 			String date_time="";
 			Database db = new Database();

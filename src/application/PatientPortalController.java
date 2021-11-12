@@ -118,7 +118,12 @@ public class PatientPortalController implements Initializable{
 	//Home button for the patient
 	public void patientHome(ActionEvent event) throws IOException {
 		destination = "PatientPortal.fxml";   
-		root = FXMLLoader.load(getClass().getResource(destination));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
+		root = loader.load();
+		PatientPortalController ppc = loader.getController();
+		ppc.setUsername(username);
+		ppc.lastVisitSummary();
+		ppc.patientContactinfo();
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow(); 
 		scene = new Scene(root);
 		stage.setScene(scene);
@@ -157,8 +162,12 @@ public class PatientPortalController implements Initializable{
 	
 	//Edit button to edit patient info
 	public void patientEdit(ActionEvent event) throws IOException {
-		destination = "patientEdit.fxml";
-		root = FXMLLoader.load(getClass().getResource(destination));
+		destination = "patientContactEdit.fxml";
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
+		//root = FXMLLoader.load(getClass().getResource(destination));
+		root = loader.load();
+		PatientEditController pec = loader.getController();
+		pec.setUsername(username);
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
