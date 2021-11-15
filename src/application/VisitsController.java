@@ -42,6 +42,21 @@ public class VisitsController {
 	private String destination;
 	private String username;
 	
+	
+	String latestCheckin = "";
+	String firstName = "";
+	String lastName = "";
+	String dob = "";
+	String phone = "";
+	String height = "\n\nHeight: ";
+	String weight = "\nWeight: ";
+	String temp = "\nTemperature: ";
+	String bp = "\nBlood Pressure: ";
+	String allergies = "\n\nAllergies: ";
+	String currMed = "\n\nCurrent Medication: ";
+	String notes = "\n\nNotes: ";
+	
+	
 	//Default constructor
 	public VisitsController() {
 
@@ -59,13 +74,60 @@ public class VisitsController {
 	//Code for text areas
 	//Shows patient's last visit summary
 	public void lastVisitSummary() {
-		DoctorNurseActions actions = new DoctorNurseActions(username);
-		lastVisitSummary.setText(actions.getLatestCheckin());
-	}	
-	
+		try {
+			String sql = "SELECT * from visits WHERE username = '" + username + "'"
+					+ " ORDER by date_time DESC";
+			
+			Database database = new Database();
+			Connection c = database.connect();
+			Statement stmt = c.createStatement(
+				    ResultSet.TYPE_SCROLL_INSENSITIVE,
+				    ResultSet.CONCUR_READ_ONLY
+				);
+			ResultSet result = stmt.executeQuery(sql);
+			
+			while(result.next()) {
+				height += result.getString("height");
+				weight += result.getString("weight");
+				temp += result.getString("temperature");
+				bp += result.getString("bp");
+				if(result.getString("nurse_notes").isBlank())
+					notes += "None";
+				else notes += result.getString("nurse_notes");
+				if(result.getString("allergies").isBlank())
+					allergies += "None";
+				else allergies += result.getString("allergies");
+				System.out.println(height + weight);
+				System.out.println("_______________");
+			}
+		/*	
+			sql = "SELECT first_name, last_name, dob, phone, curr_med "
+					+ "from patient WHERE username = '" + username + "'";
+			result = stmt.executeQuery(sql);
+			
+			if(result.first()) {
+				firstName = result.getString("first_name");
+				lastName = result.getString("last_name");
+				dob = result.getString("dob");
+				phone = result.getString("phone");
+				
+				if(result.getString("curr_med").isBlank())
+					currMed += "None";
+				else currMed += result.getString("curr_med");
+			}
+			*/
+		
+			System.out.println(latestCheckin);
+			
+			c.close();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	//Code for buttons
 	//Home button for the patient
-	public void patientHome(ActionEvent event) throws IOException {
+	public void toHome(ActionEvent event) throws IOException {
 		destination = "PatientPortal.fxml";   
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
 		root = loader.load();
@@ -80,7 +142,7 @@ public class VisitsController {
 	}
 	
 	//Messages button for the patients
-	public void patientMessages(ActionEvent event) throws IOException {
+	public void toMessages(ActionEvent event) throws IOException {
 		destination = "Messages.fxml";
 		root = FXMLLoader.load(getClass().getResource(destination));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow(); 
@@ -90,7 +152,7 @@ public class VisitsController {
 	}
 	
 	//Sign out button for the patient
-	public void patientSignOut(ActionEvent event) throws IOException {
+	public void signOut(ActionEvent event) throws IOException {
 		destination = "login.fxml";
 		root = FXMLLoader.load(getClass().getResource(destination));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();

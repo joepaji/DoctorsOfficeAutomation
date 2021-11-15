@@ -133,7 +133,12 @@ public class PatientPortalController implements Initializable{
 	//Visits button for the patient
 	public void patientVisits(ActionEvent event) throws IOException {
 		destination = "Visits.fxml";
-		root = FXMLLoader.load(getClass().getResource(destination));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
+		root = loader.load();
+		VisitsController vc = loader.getController();
+		vc.setUsername(username);
+		vc.lastVisitSummary();
+	
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();  
 		scene = new Scene(root);
 		stage.setScene(scene);
