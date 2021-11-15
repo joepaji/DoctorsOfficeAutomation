@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -22,7 +23,8 @@ import java.sql.Statement;
 
 import java.io.IOException;
 
-public class PatientPortalController implements Initializable{
+public class VisitsController {
+
 
 	//Variables for FXML
 	@FXML
@@ -31,12 +33,6 @@ public class PatientPortalController implements Initializable{
 	private Button toMessages;
 	@FXML
 	private Button toHome;
-	@FXML
-	private Button toVisits;
-	@FXML
-	private Button editButton;
-	@FXML
-	private TextArea contactInfo;
 	@FXML
 	private TextArea lastVisitSummary;
 	
@@ -47,8 +43,10 @@ public class PatientPortalController implements Initializable{
 	private String destination;
 	private String username;
 	
+	
+	
 	//Default constructor
-	public PatientPortalController() {
+	public VisitsController() {
 
 	}
 	
@@ -56,7 +54,6 @@ public class PatientPortalController implements Initializable{
 		this.username = username;
 	}
 	
-	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
 	}
@@ -64,21 +61,10 @@ public class PatientPortalController implements Initializable{
 	
 	//Code for text areas
 	//Shows patient's last visit summary
-	public void lastVisitSummary() {
-		DoctorNurseActions actions = new DoctorNurseActions(username);
-		lastVisitSummary.setText(actions.getLatestCheckin());
-	}
-	
-	//Shows patient's contact summary
-	public void patientContactinfo() {
-		String patientInfo = "";
-		String fName, lName, dob, phoneNum, emailAddress;
-		
-		//PostGreSQL
+	public void allVisitSummary() {
 		try {
-			String sql = "SELECT first_name, last_name, dob, phone, email "
-					+ " FROM patient"
-					+ " WHERE username = '" + username + "';";
+			String sql = "SELECT * from visits WHERE username = '" + username + "'"
+					+ " ORDER by date_time DESC";
 			
 			Database database = new Database();
 			Connection c = database.connect();
@@ -87,36 +73,70 @@ public class PatientPortalController implements Initializable{
 				    ResultSet.CONCUR_READ_ONLY
 				);
 			ResultSet result = stmt.executeQuery(sql);
+			String allVisits = "";
+			while(result.next()) {
+				LocalDateTime dateTime;
+				String latestCheckin = "";
+				String date = "\nDate: ";
+				String height = "\n\nHeight: ";
+				String weight = "\nWeight: ";
+				String temp = "\nTemperature: ";
+				String bp = "\nBlood Pressure: ";
+				String allergies = "\n\nAllergies: ";
+				String currMed = "\n\nCurrent Medication: ";
+				String doctorNotes = "\n\nDoctor Notes: ";
+				String nurseNotes = "\n\nNurse Notes: ";
+				String spacer = "\n___________________________________";
+				
+				dateTime = result.getObject(10, LocalDateTime.class);
+				date += dateTime.toString().substring(0,10);
+		
+				height += result.getString("height");
+				weight += result.getString("weight");
+				temp += result.getString("temperature");
+				bp += result.getString("bp");
+				if(result.getString("nurse_notes").isBlank())
+					nurseNotes += "None";
+				else nurseNotes += result.getString("nurse_notes");
+				if(result.getString("doctor_notes").isBlank())
+					doctorNotes += "None";
+				else doctorNotes += result.getString("doctor_notes");
+				if(result.getString("allergies").isBlank())
+					allergies += "None";
+				else allergies += result.getString("allergies");
+		
+				latestCheckin = date + height + weight + temp + bp + allergies + currMed + doctorNotes + nurseNotes + spacer;
+				allVisits += latestCheckin;
+			}
+			lastVisitSummary.setText(allVisits);
+		/*	
+			sql = "SELECT first_name, last_name, dob, phone, curr_med "
+					+ "from patient WHERE username = '" + username + "'";
+			result = stmt.executeQuery(sql);
 			
 			if(result.first()) {
-				// Get contact information
-				fName = result.getString("first_name");
-				lName = result.getString("last_name");
+				firstName = result.getString("first_name");
+				lastName = result.getString("last_name");
 				dob = result.getString("dob");
-				phoneNum = result.getString("phone");
-				emailAddress = result.getString("email");
+				phone = result.getString("phone");
 				
-				//Concatination of strings
-				patientInfo += "First Name: " + fName;
-				patientInfo += "\nLast Name: " + lName;
-				patientInfo += "\nDate of Birth: " + dob;
-				patientInfo += "\nPhone Number: " + phoneNum;
-				patientInfo += "\nEmail Address: " + emailAddress;
+				if(result.getString("curr_med").isBlank())
+					currMed += "None";
+				else currMed += result.getString("curr_med");
 			}
-						
+			*/
+		
+			//System.out.println(latestCheckin);
+			
 			c.close();
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
 		}
-	
-		contactInfo.setText(patientInfo);
 	}
-	
-	
 	//Code for buttons
 	//Home button for the patient
-	public void patientHome(ActionEvent event) throws IOException {
+	public void toHome(ActionEvent event) throws IOException {
 		destination = "PatientPortal.fxml";   
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
 		root = loader.load();
@@ -130,23 +150,8 @@ public class PatientPortalController implements Initializable{
 		stage.show();
 	}
 	
-	//Visits button for the patient
-	public void patientVisits(ActionEvent event) throws IOException {
-		destination = "Visits.fxml";
-		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
-		root = loader.load();
-		VisitsController vc = loader.getController();
-		vc.setUsername(username);
-		vc.allVisitSummary();
-	
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();  
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
-	}
-	
 	//Messages button for the patients
-	public void patientMessages(ActionEvent event) throws IOException {
+	public void toMessages(ActionEvent event) throws IOException {
 		destination = "Messages.fxml";
 		root = FXMLLoader.load(getClass().getResource(destination));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow(); 
@@ -156,7 +161,7 @@ public class PatientPortalController implements Initializable{
 	}
 	
 	//Sign out button for the patient
-	public void patientSignOut(ActionEvent event) throws IOException {
+	public void signOut(ActionEvent event) throws IOException {
 		destination = "login.fxml";
 		root = FXMLLoader.load(getClass().getResource(destination));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -164,18 +169,7 @@ public class PatientPortalController implements Initializable{
 		stage.setScene(scene);
 		stage.show();
 	}
-	
-	//Edit button to edit patient info
-	public void patientEdit(ActionEvent event) throws IOException {
-		destination = "patientContactEdit.fxml";
-		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
-		//root = FXMLLoader.load(getClass().getResource(destination));
-		root = loader.load();
-		PatientEditController pec = loader.getController();
-		pec.setUsername(username);
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
-	}
+
 }
+
+
