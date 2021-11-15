@@ -173,13 +173,4 @@ public class PatientPortalController implements Initializable{
 		stage.setScene(scene);
 		stage.show();
 	}
-	
-	
 }
-
-
-
-
-
-
-

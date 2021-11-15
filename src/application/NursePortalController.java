@@ -48,6 +48,7 @@ public class NursePortalController{
 	private Parent root;
 	private String destination;
 	private String username;
+	private int userID;
 	
 	public NursePortalController()
 	{
@@ -66,9 +67,20 @@ public class NursePortalController{
 	
 	public void toMessages(ActionEvent event) throws IOException
 	{
-		//destination = "Messages.fxml";
-		destination = "login.fxml";    //testing
-		root = FXMLLoader.load(getClass().getResource(destination));
+		
+		destination = "Messenger.fxml";   
+		//root = FXMLLoader.load(getClass().getResource(destination));
+		//stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
+		root = loader.load();
+		
+		//This passes the userID of the user to the messenger controller
+		MessengerController messenger = loader.getController();
+		messenger.setUsername(username);
+		System.out.println(messenger.username);
+		messenger.setSelfFirstLast();
+		messenger.displayMessages(); 
+		
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
 		scene = new Scene(root);
 		stage.setScene(scene);
@@ -83,7 +95,7 @@ public class NursePortalController{
 			Connection c = db.connect();
 			Statement stmt = c.createStatement();
 			
-			// search the database for shopping_cart with matching userID
+			// search the database for entry with matching userID
 			String sql = "SELECT * FROM patient WHERE (first_name = '" + firstName.getText().toString() +
 												  "' AND last_name = '" + lastName.getText().toString() + "'"
 												  		+ "AND dob = '" + dateOfBirth.getText().toString()+"');";	
@@ -115,8 +127,8 @@ public class NursePortalController{
 			checkinError.setText("Oops, no patients selected.");
 		}
 		else {
-			System.out.println("checkin");
-			destination = "PatientCheckIn.fxml";    //testing
+			System.out.println("checkin");	 //testing
+			destination = "PatientCheckIn.fxml";   
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
 			root = loader.load();
 			
@@ -131,6 +143,11 @@ public class NursePortalController{
 			stage.show();
 		}
 		
+	}
+	
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 	public void displayLastCheckin() {

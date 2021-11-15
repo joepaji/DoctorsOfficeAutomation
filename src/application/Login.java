@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -53,40 +52,52 @@ public class Login {
 		
 		String destination = "";
 		
-		
 		switch(loginType) // this switch will determine what the outcome of the authenticator was
 		{
 			case -1 : destination = "";
 				wrongLogin.setText("Incorrect username/password. Please try again.");
 				break;
 				
-			case 1 : destination = "PatientPortal.fxml";
-				break;
+			case 1 : destination = "PatientPortal.fxml";  
+			
+				//This passes the username of the patient to the patientCheckIn controller
+				FXMLLoader patientLoader = new FXMLLoader(getClass().getResource(destination));
+				root = patientLoader.load();
 				
-			case 2 : destination = "NursePortal.fxml";	
+				PatientPortalController patientPortal = patientLoader.getController();
+				patientPortal.setUsername(usernameData);
 
 				break;
 				
-			case 3 : destination = "DoctorPortal.fxml";
+			case 2 : destination = "NursePortal.fxml";	
+			
+				//This passes the username of the patient to the patientCheckIn controller
+				FXMLLoader nurseLoader = new FXMLLoader(getClass().getResource(destination));
+				root = nurseLoader.load();
+			
+				NursePortalController nursePortal = nurseLoader.getController();
+				nursePortal.setUsername(usernameData);
+				
 				break;
+				
+			case 3 : destination = "DoctorPortal.fxml";
+				
+				//This passes the username of the patient to the patientCheckIn controller
+				FXMLLoader doctorLoader = new FXMLLoader(getClass().getResource(destination));
+				root = doctorLoader.load();
+		
+				DoctorPortalController doctorPortal = doctorLoader.getController();
+				//doctorPortal.setUsername(usernameData);
+			
+				break;				
 		}
 		
-		// open the proper scene depending on userType
-		if(destination != "" /*&& destination != "DoctorPortal.fxml"*/)  // make sure there was a valid destination
-		{
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
-			root = loader.load();
-			PatientPortalController ppc = loader.getController();
-			ppc.setUsername(usernameData);
-			ppc.lastVisitSummary();
-			ppc.patientContactinfo();
-			//root = FXMLLoader.load(getClass().getResource(destination));		
+		if(destination != "")  // make sure there was a valid destination
+		{	
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
 			scene = new Scene(root);
 			stage.setScene(scene);
-			stage.show();
-			
-			
+			stage.show();			
 		}
 	}
 	
@@ -107,8 +118,12 @@ public class Login {
 			Statement stmt = c.createStatement();
 			
 			// make sure the username is unique 
-			String sql1 = "SELECT * FROM patient WHERE username = '"+ pUsername +"';";
-			ResultSet rs1 = stmt.executeQuery(sql1);
+			String sql1 = "SELECT * FROM patient, staff WHERE username = '"+ pUsername +"';";
+			String sql2 = "SELECT * FROM staff WHERE username = '"+ pUsername +"';";
+			
+			ResultSet rs1 = stmt.executeQuery(sql2);
+		//	ResultSet rs2 = stmt.executeQuery(sql2);
+			
 			c.close();
 			
 			String pass = "";

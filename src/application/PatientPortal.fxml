@@ -40,3 +40,4 @@
 		<Button fx:id="editButton" layoutX="274.0" layoutY="506.0" maxWidth="52.0" mnemonicParsing="false" onAction="#patientEdit" prefHeight="25.0" prefWidth="52.0" style="-fx-background-color: #FFC627;" text="Edit" />
 	</children>
 </AnchorPane>
+
