@@ -6,7 +6,6 @@ public class UserAccount {
 	private String firstName;
 	private String lastName;
 	private String birthDate;
-	private Messenger messenger;
 	// determines if doctor (0), nurse (1) or patient (2)
 	private int userType; 
 	
@@ -18,7 +17,7 @@ public class UserAccount {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birthDate = birthDate;
-		messenger = new Messenger();
+
 	}
 	
 	// Returns this UserAccount object
@@ -39,16 +38,7 @@ public class UserAccount {
 	public void createMessenger() {
 		
 	}
-	
-	// Sends a message through this user's messenger
-	public void sendMessage(String message) {
-		messenger.sendMessage(message);
-	}
-	
-	// Reads a message through this user's messenger
-	public void readMessage() {
-		messenger.viewMessage();
-	}
+
 	
 	// Getters
 	

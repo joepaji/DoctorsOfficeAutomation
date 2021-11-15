@@ -118,10 +118,12 @@ public class Login {
 			Statement stmt = c.createStatement();
 			
 			// make sure the username is unique 
-			String sql1 = "SELECT * FROM patient, staff WHERE username = '"+ pUsername +"';";
+			String sql1 = "SELECT password, usertype FROM patient WHERE username = '"+ pUsername + "' "
+					+ "union SELECT password, usertype from staff WHERE username = '"+ pUsername + "' ";
+		
 			String sql2 = "SELECT * FROM staff WHERE username = '"+ pUsername +"';";
 			
-			ResultSet rs1 = stmt.executeQuery(sql2);
+			ResultSet rs1 = stmt.executeQuery(sql1);
 		//	ResultSet rs2 = stmt.executeQuery(sql2);
 			
 			c.close();
@@ -133,7 +135,7 @@ public class Login {
 			if(rs1.next()) {
 				pass = rs1.getString("password");
 				usertype = rs1.getInt("usertype");
-				System.out.println(pass);
+				System.out.println("Usertype: " + usertype);
 			} else return -1; //error code
 			
 			if(pPassword.equals(pass)) {
