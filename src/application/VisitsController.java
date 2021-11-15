@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -43,19 +44,6 @@ public class VisitsController {
 	private String username;
 	
 	
-	String latestCheckin = "";
-	String firstName = "";
-	String lastName = "";
-	String dob = "";
-	String phone = "";
-	String height = "\n\nHeight: ";
-	String weight = "\nWeight: ";
-	String temp = "\nTemperature: ";
-	String bp = "\nBlood Pressure: ";
-	String allergies = "\n\nAllergies: ";
-	String currMed = "\n\nCurrent Medication: ";
-	String notes = "\n\nNotes: ";
-	
 	
 	//Default constructor
 	public VisitsController() {
@@ -73,7 +61,7 @@ public class VisitsController {
 	
 	//Code for text areas
 	//Shows patient's last visit summary
-	public void lastVisitSummary() {
+	public void allVisitSummary() {
 		try {
 			String sql = "SELECT * from visits WHERE username = '" + username + "'"
 					+ " ORDER by date_time DESC";
@@ -85,21 +73,42 @@ public class VisitsController {
 				    ResultSet.CONCUR_READ_ONLY
 				);
 			ResultSet result = stmt.executeQuery(sql);
-			
+			String allVisits = "";
 			while(result.next()) {
+				LocalDateTime dateTime;
+				String latestCheckin = "";
+				String date = "\nDate: ";
+				String height = "\n\nHeight: ";
+				String weight = "\nWeight: ";
+				String temp = "\nTemperature: ";
+				String bp = "\nBlood Pressure: ";
+				String allergies = "\n\nAllergies: ";
+				String currMed = "\n\nCurrent Medication: ";
+				String doctorNotes = "\n\nDoctor Notes: ";
+				String nurseNotes = "\n\nNurse Notes: ";
+				String spacer = "\n___________________________________";
+				
+				dateTime = result.getObject(10, LocalDateTime.class);
+				date += dateTime.toString().substring(0,10);
+		
 				height += result.getString("height");
 				weight += result.getString("weight");
 				temp += result.getString("temperature");
 				bp += result.getString("bp");
 				if(result.getString("nurse_notes").isBlank())
-					notes += "None";
-				else notes += result.getString("nurse_notes");
+					nurseNotes += "None";
+				else nurseNotes += result.getString("nurse_notes");
+				if(result.getString("doctor_notes").isBlank())
+					doctorNotes += "None";
+				else doctorNotes += result.getString("doctor_notes");
 				if(result.getString("allergies").isBlank())
 					allergies += "None";
 				else allergies += result.getString("allergies");
-				System.out.println(height + weight);
-				System.out.println("_______________");
+		
+				latestCheckin = date + height + weight + temp + bp + allergies + currMed + doctorNotes + nurseNotes + spacer;
+				allVisits += latestCheckin;
 			}
+			lastVisitSummary.setText(allVisits);
 		/*	
 			sql = "SELECT first_name, last_name, dob, phone, curr_med "
 					+ "from patient WHERE username = '" + username + "'";
@@ -117,7 +126,7 @@ public class VisitsController {
 			}
 			*/
 		
-			System.out.println(latestCheckin);
+			//System.out.println(latestCheckin);
 			
 			c.close();
 		}

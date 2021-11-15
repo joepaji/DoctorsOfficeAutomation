@@ -137,7 +137,7 @@ public class PatientPortalController implements Initializable{
 		root = loader.load();
 		VisitsController vc = loader.getController();
 		vc.setUsername(username);
-		vc.lastVisitSummary();
+		vc.allVisitSummary();
 	
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();  
 		scene = new Scene(root);
