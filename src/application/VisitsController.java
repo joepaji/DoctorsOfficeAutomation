@@ -65,14 +65,16 @@ public class VisitsController {
 		try {
 			String sql = "SELECT * from visits WHERE username = '" + username + "'"
 					+ " ORDER by date_time DESC";
-			
+			String sql2 = "SELECT curr_med from patient WHERE username = '" + username + "'";
 			Database database = new Database();
 			Connection c = database.connect();
 			Statement stmt = c.createStatement(
 				    ResultSet.TYPE_SCROLL_INSENSITIVE,
 				    ResultSet.CONCUR_READ_ONLY
 				);
+			
 			ResultSet result = stmt.executeQuery(sql);
+			
 			String allVisits = "";
 			while(result.next()) {
 				LocalDateTime dateTime;
@@ -104,6 +106,9 @@ public class VisitsController {
 				if(result.getString("allergies").isBlank())
 					allergies += "None";
 				else allergies += result.getString("allergies");
+				if(result.getString("medications").isBlank())
+					currMed += "None";
+				else currMed += result.getString("medications");
 		
 				latestCheckin = date + height + weight + temp + bp + allergies + currMed + doctorNotes + nurseNotes + spacer;
 				allVisits += latestCheckin;

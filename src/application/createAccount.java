@@ -66,11 +66,21 @@ public class createAccount {
 	private String historyOfImmData;
 	private String usernameData;
 	private String passwordData;
+	private int userType = -1;
+	private String loggedUser = "";
 	
 	public void userBackToLogin(ActionEvent event) {
 		//checkLogin();
 		Main m = new Main();
 		m.changeScene("login.fxml");
+	}
+	
+	public void setUsername(String username) {
+		this.loggedUser = username;
+	}
+	
+	public void setUserType(int userType) {
+		this.userType = userType;
 	}
 	
 	public void userConfirmEntry(ActionEvent event) {
@@ -108,7 +118,8 @@ public class createAccount {
 			Statement stmt = c.createStatement();
 			
 			// Check if username already exists
-			String sql = "SELECT * from patient WHERE username = '" + usernameData + "'";
+			String sql = "SELECT username from patient WHERE username = '" + usernameData + "' "
+					+ "union SELECT username from staff WHERE username = '" + usernameData + "'";
 			
 			ResultSet result = stmt.executeQuery(sql);
 			
