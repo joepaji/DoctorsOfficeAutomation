@@ -11,9 +11,9 @@
    <children>
       <AnchorPane prefHeight="62.0" prefWidth="800.0" style="-fx-background-color: #8c1d40;">
          <children>
-            <Button fx:id="signOut" layoutX="712.0" layoutY="19.0" mnemonicParsing="false" onAction="#signOut" prefWidth="70.0" style="-fx-background-color: #FFC627; -fx-max-width: 68;" text="Sign Out" />
-            <Button fx:id="toMessages" layoutX="632.0" layoutY="19.0" mnemonicParsing="false" onAction="#toMessages" prefWidth="70.0" style="-fx-background-color: #FFC627; -fx-max-width: 68;" text="Messages" />
-            <Button fx:id="toHome" layoutX="553.0" layoutY="19.0" mnemonicParsing="false" prefWidth="70.0" style="-fx-background-color: #FFC627; -fx-max-width: 68;" text="Home" />
+            <Button fx:id="signOut" layoutX="710.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#signOut" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #FFC627; -fx-max-width: 68;" text="Sign Out" />
+            <Button fx:id="toMessages" layoutX="630.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#toMessages" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #FFC627; -fx-max-width: 68;" text="Messages" />
+            <Button fx:id="toHome" layoutX="550.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#toHome" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #FFC627; -fx-max-width: 68;" text="Home" />
          </children>
       </AnchorPane>
       <TextArea fx:id="prevCheckIn" editable="false" layoutX="50.0" layoutY="168.0" prefHeight="345.0" prefWidth="300.0" text="Patient Name:&#10;Date of Birth:&#10;Phone Number:&#10;&#10;Height:&#10;Weight:&#10;Temperature:&#10;Blood Pressure:&#10;&#10;Allergies:&#10;&#10;Current Medication: &#10;&#10;Notes: " />
@@ -25,6 +25,6 @@
       <Separator layoutX="299.0" layoutY="205.0" minHeight="215.0" orientation="VERTICAL" prefHeight="222.0" prefWidth="202.0" />
       <TextArea fx:id="inputPrescription" layoutX="450.0" layoutY="216.0" prefHeight="100.0" prefWidth="300.0" promptText="New Prescriptions" />
       <TextArea fx:id="inputNotes" layoutX="450.0" layoutY="341.0" prefHeight="100.0" prefWidth="300.0" promptText="Additional Notes" />
-      <Button fx:id="saveInputs" layoutX="682.0" layoutY="488.0" mnemonicParsing="false" onAction="#saveInputs" prefWidth="70.0" style="-fx-background-color: #FFC627; -fx-max-width: 68;" text="Save" />
+      <Button fx:id="saveInputs" layoutX="563.0" layoutY="488.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#saveInputs" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #FFC627; -fx-max-width: 68;" text="Save" />
    </children>
 </AnchorPane>

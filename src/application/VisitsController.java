@@ -34,6 +34,8 @@ public class VisitsController {
 	@FXML
 	private Button toHome;
 	@FXML
+	private Button toVisits;
+	@FXML
 	private TextArea lastVisitSummary;
 	
 	//Variables
@@ -157,11 +159,16 @@ public class VisitsController {
 	
 	//Messages button for the patients
 	public void toMessages(ActionEvent event) throws IOException {
-		destination = "Messages.fxml";
-		root = FXMLLoader.load(getClass().getResource(destination));
+		destination = "Messenger.fxml";
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
+		root = loader.load();
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow(); 
 		scene = new Scene(root);
 		stage.setScene(scene);
+		MessengerController messengerController = loader.getController();
+		messengerController.setUsername(username);
+		messengerController.setSelfFirstLast();
+		messengerController.displayMessages();
 		stage.show();
 	}
 	
@@ -170,6 +177,21 @@ public class VisitsController {
 		destination = "login.fxml";
 		root = FXMLLoader.load(getClass().getResource(destination));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	//goes to visits page
+	public void patientVisits(ActionEvent event) throws IOException {
+		destination = "Visits.fxml";
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
+		root = loader.load();
+		VisitsController vc = loader.getController();
+		vc.setUsername(username);
+		vc.allVisitSummary();
+	
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();  
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();

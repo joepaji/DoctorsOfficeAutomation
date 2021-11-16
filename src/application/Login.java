@@ -88,7 +88,7 @@ public class Login {
 				root = doctorLoader.load();
 		
 				DoctorPortalController doctorPortal = doctorLoader.getController();
-				//doctorPortal.setUsername(usernameData);
+				doctorPortal.setUsername(usernameData);
 			
 				break;				
 		}

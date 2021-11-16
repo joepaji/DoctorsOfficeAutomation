@@ -89,9 +89,11 @@ public class PatientEditController {
 	public void patientVisits(ActionEvent event) throws IOException {
 		//Making the destination the visits GUI
 		destination = "Visits.fxml";
-		
-		//Creating the stage and scene of the GUI to go to the visits page
-		root = FXMLLoader.load(getClass().getResource(destination));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
+		root = loader.load();
+		VisitsController visitsController=loader.getController();
+		visitsController.setUsername(username);
+		visitsController.allVisitSummary();
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();  
 		scene = new Scene(root);
 		stage.setScene(scene);
@@ -100,11 +102,13 @@ public class PatientEditController {
 		
 	//Messages button for the patients
 	public void patientMessages(ActionEvent event) throws IOException {
-		//Making the destination the messages GUI
-		destination = "Messages.fxml";
-		
-		//Creating the stage and scene of the GUI to go to the visits page
-		root = FXMLLoader.load(getClass().getResource(destination));
+		destination = "Messenger.fxml";
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
+		root = loader.load();
+		MessengerController messengerController=loader.getController();
+		messengerController.setUsername(username);
+		messengerController.setSelfFirstLast();
+		messengerController.displayMessages();
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow(); 
 		scene = new Scene(root);
 		stage.setScene(scene);
@@ -115,9 +119,8 @@ public class PatientEditController {
 	public void patientSignOut(ActionEvent event) throws IOException {
 		//Making the destination the login GUI 
 		destination = "login.fxml";
-		
-		//Creating the stage and scene of the GUI to go to the login page
-		root = FXMLLoader.load(getClass().getResource(destination));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
+		root = loader.load();
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
