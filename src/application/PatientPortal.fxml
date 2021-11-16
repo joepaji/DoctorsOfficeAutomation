@@ -13,10 +13,10 @@
 	<children>
 		<AnchorPane prefHeight="62.0" prefWidth="800.0" style="-fx-background-color: #8c1d40;">
 			<children>
-				<Button fx:id="toHome" layoutX="473.0" layoutY="19.0" mnemonicParsing="false" onAction="#patientHome" prefWidth="70.0" style="-fx-background-color: #FFC627; -fx-max-width: 68;" text="Home" />
-				<Button fx:id="toVisits" layoutX="553.0" layoutY="19.0" mnemonicParsing="false" onAction="#patientVisits" prefWidth="70.0" style="-fx-background-color: #FFC627; -fx-max-width: 68;" text="Visits" />
-				<Button fx:id="toMessages" layoutX="632.0" layoutY="19.0" mnemonicParsing="false" onAction="#patientMessages" prefWidth="70.0" style="-fx-background-color: #FFC627;" text="Messages" />
-				<Button fx:id="signOut" layoutX="712.0" layoutY="19.0" mnemonicParsing="false" onAction="#patientSignOut" prefWidth="70.0" style="-fx-background-color: #FFC627;" text="Sign out" />
+				<Button fx:id="toHome" layoutX="470.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#patientHome" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #FFC627; -fx-max-width: 68;" text="Home" />
+				<Button fx:id="toVisits" layoutX="550.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#patientVisits" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #FFC627; -fx-max-width: 68;" text="Visits" />
+				<Button fx:id="toMessages" layoutX="630.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#patientMessages" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #FFC627;" text="Messages" />
+				<Button fx:id="signOut" layoutX="710.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#patientSignOut" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #FFC627;" text="Sign out" />
 			</children>
 		</AnchorPane>
 		<ImageView fitHeight="86.0" fitWidth="49.0" layoutX="26.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
@@ -36,8 +36,7 @@
 				<Font size="16.0" />
 			</font>
 		</Label>
-		<TextArea fx:id="contactInfo" layoutX="75.0" layoutY="175.0" minHeight="150.0" minWidth="212.0" prefHeight="313.0" prefWidth="250.0" text="First Name: John&#10;Last Name: Doe&#10;Date of Birth: 1/1/1999&#10;Street Address: 123 Example St&#10;City: Phoenix&#10;State: Arizona&#10;Phone number: +1.4801231234&#10;Email address: example@example.com&#10;&#10;" />
-		<Button fx:id="editButton" layoutX="274.0" layoutY="506.0" maxWidth="52.0" mnemonicParsing="false" onAction="#patientEdit" prefHeight="25.0" prefWidth="52.0" style="-fx-background-color: #FFC627;" text="Edit" />
+		<TextArea fx:id="contactInfo" layoutX="75.0" layoutY="175.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="313.0" prefWidth="250.0" text="First Name: John&#10;Last Name: Doe&#10;Date of Birth: 1/1/1999&#10;Street Address: 123 Example St&#10;City: Phoenix&#10;State: Arizona&#10;Phone number: +1.4801231234&#10;Email address: example@example.com&#10;&#10;" />
+		<Button fx:id="editButton" layoutX="162.5" layoutY="500.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#patientEdit" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #FFC627;" text="Edit" />
 	</children>
 </AnchorPane>
-

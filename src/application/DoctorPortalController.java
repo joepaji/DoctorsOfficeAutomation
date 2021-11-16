@@ -46,10 +46,23 @@ public class DoctorPortalController{
 	private Parent root;
 	private String destination;
 	private String username;
+	private String patientUsername;
 	
 	public DoctorPortalController()
 	{
 		
+	}
+	
+	public void toHome(ActionEvent event) throws IOException {
+		destination = "DoctorPortal.fxml";   
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
+		root = loader.load();
+		DoctorPortalController dpc = loader.getController();
+		dpc.setUsername(username);
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow(); 
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
 	}
 	
 	public void signOut(ActionEvent event) throws IOException
@@ -64,12 +77,16 @@ public class DoctorPortalController{
 	
 	public void toMessages(ActionEvent event) throws IOException
 	{
-		//destination = "Messages.fxml";
-		destination = "login.fxml";    //testing
-		root = FXMLLoader.load(getClass().getResource(destination));
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
+		destination = "Messenger.fxml";
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
+		root = loader.load();
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow(); 
 		scene = new Scene(root);
 		stage.setScene(scene);
+		MessengerController messengerController = loader.getController();
+		messengerController.setUsername(username);
+		messengerController.setSelfFirstLast();
+		messengerController.displayMessages();
 		stage.show();
 	}
 	
@@ -90,7 +107,7 @@ public class DoctorPortalController{
 			if(rs.next()) {
 				String first = rs.getString("first_name");
 				String last = rs.getString("last_name"); 
-				username = rs.getString("username");
+				patientUsername = rs.getString("username");
 				// ************** TODO
 				System.out.println(first);
 				System.out.println(last);
@@ -109,7 +126,7 @@ public class DoctorPortalController{
 	public void beginExam(ActionEvent event) throws IOException
 	{
 		//TODO check if username is selected (should be assigned from search function).
-		if(username == null || username == "") {
+		if(patientUsername == null || patientUsername == "") {
 			checkinError.setText("Oops, no patients selected.");
 		}else {
 			System.out.println("begin exam");
@@ -119,6 +136,7 @@ public class DoctorPortalController{
 			
 			PatientExamController patientExamController = loader.getController();
 			patientExamController.setUsername(username);
+			patientExamController.setPatientUsername(patientUsername);
 			System.out.println(username);
 			patientExamController.displayPrevCheckIn();
 			
@@ -130,8 +148,11 @@ public class DoctorPortalController{
 	}
 	
 	public void displayLastCheckin() {
-		DoctorNurseActions actions = new DoctorNurseActions(username);
+		DoctorNurseActions actions = new DoctorNurseActions(patientUsername);
 		prevCheckin.setText(actions.getLatestCheckin());
 	}
 	
+	public void setUsername(String username) {
+		this.username = username;
+	}
 }

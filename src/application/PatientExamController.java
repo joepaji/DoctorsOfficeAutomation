@@ -44,14 +44,15 @@ public class PatientExamController {
 	private String destination;
 	private String prescriptionsData;
 	private String notesData;
-	private String username;
+	private String doctorUsername;
+	private String patientUsername;
 	
 	public PatientExamController() {
 		
 	}
 	
 	public void displayPrevCheckIn() {
-		DoctorNurseActions action = new DoctorNurseActions(username);
+		DoctorNurseActions action = new DoctorNurseActions(doctorUsername);
 		prevCheckIn.setText(action.getLatestCheckin());
 	}
 	
@@ -67,20 +68,27 @@ public class PatientExamController {
 	
 	public void toMessages(ActionEvent event) throws IOException
 	{
-		//destination = "Messages.fxml";
-		destination = "login.fxml";    //testing
-		root = FXMLLoader.load(getClass().getResource(destination));
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
+		destination = "Messenger.fxml";
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
+		root = loader.load();
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow(); 
 		scene = new Scene(root);
 		stage.setScene(scene);
+		MessengerController messengerController = loader.getController();
+		messengerController.setUsername(doctorUsername);
+		messengerController.setSelfFirstLast();
+		messengerController.displayMessages();
 		stage.show();
 	}
 	
 	public void toHome(ActionEvent event) throws IOException
 	{
-		destination = "DoctorPortal.fxml"; 
-		root = FXMLLoader.load(getClass().getResource(destination));
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
+		destination = "DoctorPortal.fxml";   
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
+		root = loader.load();
+		DoctorPortalController dpc = loader.getController();
+		dpc.setUsername(doctorUsername);
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow(); 
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
@@ -116,7 +124,7 @@ public class PatientExamController {
 			sql="UPDATE visits SET doctor_notes='"+notes+"',medications='"+medications+"'WHERE date_time='"+date_time+"'";
 			PreparedStatement prepStatement = c.prepareStatement(sql);
 			prepStatement.executeUpdate();
-			sql="UPDATE patient SET curr_med='"+medications+"' WHERE username='"+username+"'";
+			sql="UPDATE patient SET curr_med='"+medications+"' WHERE username='"+ patientUsername+"'";
 			prepStatement = c.prepareStatement(sql);
 			prepStatement.executeUpdate();
 			c.close();
@@ -128,7 +136,11 @@ public class PatientExamController {
 	
 	
 	public void setUsername(String username) {
-		this.username = username;
+		this.doctorUsername = username;
+	}
+	
+	public void setPatientUsername(String patientUsername) {
+		this.patientUsername = patientUsername;
 	}
 	
 	public static boolean isFieldEmpty(String... strings) {

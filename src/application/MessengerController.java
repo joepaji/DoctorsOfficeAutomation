@@ -73,14 +73,87 @@ public class MessengerController implements Initializable{
 	}
 	
 	// to home? need to distinguish between who is going where
-	public void toPatientPortal(ActionEvent event) throws IOException
+	public void toHome(ActionEvent event) throws IOException
 	{
-		destination = "PatientPortal.fxml";    
-		root = FXMLLoader.load(getClass().getResource(destination));
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		
+		int loginType=-1;
+		
+		String sql="SELECT usertype FROM patient WHERE username='" + username + "'"
+				+ " union SELECT usertype FROM staff WHERE username='" + username + "';";
+		
+		Database database = new Database();
+		Connection c = database.connect();
+		Statement stmt;
+		try {
+			stmt = c.createStatement(
+				    ResultSet.TYPE_SCROLL_INSENSITIVE,
+				    ResultSet.CONCUR_READ_ONLY);
+				
+		ResultSet result = stmt.executeQuery(sql);
+		if(result.next()) {
+			loginType=result.getInt("usertype");
+		}
+					
+		
+		switch(loginType) // this switch will determine what the outcome of the authenticator was
+		{
+			
+			case 1 : destination = "PatientPortal.fxml";  
+			
+				//This passes the username of the patient to the patientCheckIn controller
+				FXMLLoader patientLoader = new FXMLLoader(getClass().getResource(destination));
+				root = patientLoader.load();
+				
+				PatientPortalController patientPortal = patientLoader.getController();
+				patientPortal.setUsername(username);
+				patientPortal.lastVisitSummary();
+				patientPortal.patientContactinfo();
+
+
+				break;
+				
+			case 2 : destination = "NursePortal.fxml";	
+			
+				//This passes the username of the patient to the patientCheckIn controller
+				FXMLLoader nurseLoader = new FXMLLoader(getClass().getResource(destination));
+				root = nurseLoader.load();
+			
+				NursePortalController nursePortal = nurseLoader.getController();
+				nursePortal.setUsername(username);
+				
+				break;
+				
+			case 3 : destination = "DoctorPortal.fxml";
+				
+				//This passes the username of the patient to the patientCheckIn controller
+				FXMLLoader doctorLoader = new FXMLLoader(getClass().getResource(destination));
+				root = doctorLoader.load();
+		
+				DoctorPortalController doctorPortal = doctorLoader.getController();
+				doctorPortal.setUsername(username);
+			
+				break;				
+		}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		if(destination != "")  // make sure there was a valid destination
+		{	
+			stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
+			scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();			
+		}
+		/*
+		 * destination = "PatientPortal.fxml"; root =
+		 * FXMLLoader.load(getClass().getResource(destination)); stage =
+		 * (Stage)((Node)event.getSource()).getScene().getWindow(); // assigns the stage
+		 * to the currently running stage from main scene = new Scene(root);
+		 * stage.setScene(scene); stage.show();
+		 */
 	}
 	
 	public void sendMessage(ActionEvent event) throws IOException
@@ -169,7 +242,8 @@ public class MessengerController implements Initializable{
 	public void setSelfFirstLast()
 	{
 		try {
-			String sql = "SELECT * FROM staff WHERE (username = '"+ username +"');";
+			String sql = "SELECT first_name, last_name FROM staff WHERE (username = '"+ username +"')"
+					+ "union SELECT first_name, last_name FROM patient WHERE (username = '"+ username +"');";
 			
 			Database database = new Database();
 			Connection c = database.connect();

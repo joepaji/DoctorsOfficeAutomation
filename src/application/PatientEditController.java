@@ -80,7 +80,11 @@ public class PatientEditController {
 	//Visits button for the patient
 	public void patientVisits(ActionEvent event) throws IOException {
 		destination = "Visits.fxml";
-		root = FXMLLoader.load(getClass().getResource(destination));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
+		root = loader.load();
+		VisitsController visitsController=loader.getController();
+		visitsController.setUsername(username);
+		visitsController.allVisitSummary();
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();  
 		scene = new Scene(root);
 		stage.setScene(scene);
@@ -89,8 +93,13 @@ public class PatientEditController {
 		
 	//Messages button for the patients
 	public void patientMessages(ActionEvent event) throws IOException {
-		destination = "Messages.fxml";
-		root = FXMLLoader.load(getClass().getResource(destination));
+		destination = "Messenger.fxml";
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
+		root = loader.load();
+		MessengerController messengerController=loader.getController();
+		messengerController.setUsername(username);
+		messengerController.setSelfFirstLast();
+		messengerController.displayMessages();
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow(); 
 		scene = new Scene(root);
 		stage.setScene(scene);
@@ -100,7 +109,8 @@ public class PatientEditController {
 	//Sign out button for the patient
 	public void patientSignOut(ActionEvent event) throws IOException {
 		destination = "login.fxml";
-		root = FXMLLoader.load(getClass().getResource(destination));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
+		root = loader.load();
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);

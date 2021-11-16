@@ -11,9 +11,9 @@
    <children>
       <AnchorPane prefHeight="62.0" prefWidth="800.0" style="-fx-background-color: #8c1d40;">
          <children>
-            <Button fx:id="signOut" layoutX="709.0" layoutY="19.0" mnemonicParsing="false" onAction="#signOut" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #FFC627; -fx-max-width: 75;" text="Sign Out" />
-            <Button fx:id="toMessages" layoutX="623.0" layoutY="19.0" maxWidth="78.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: #FFC627; -fx-max-width: 75;" text="Messages" />
-            <Button fx:id="toHome" layoutX="536.0" layoutY="19.0" maxWidth="85.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #FFC627; -fx-max-width: 75;" text="Home" />
+            <Button fx:id="signOut" layoutX="710.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#signOut" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #FFC627; -fx-max-width: 75;" text="Sign Out" />
+            <Button fx:id="toMessages" layoutX="630.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #FFC627; -fx-max-width: 75;" text="Messages" />
+            <Button fx:id="toHome" layoutX="550.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#toHome" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #FFC627; -fx-max-width: 75;" text="Home" />
          </children>
       </AnchorPane>
       <Label layoutX="135.0" layoutY="209.0" text="New Message">
@@ -21,7 +21,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Button fx:id="sendMessage" layoutX="123.0" layoutY="471.0" maxWidth="170.0" mnemonicParsing="false" onAction="#sendMessage" prefHeight="26.0" prefWidth="170.0" style="-fx-background-color: #FFC627; -fx-max-width: 120;" text="Send Message" />
+      <Button fx:id="sendMessage" layoutX="132.5" layoutY="472.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendMessage" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #FFC627; -fx-max-width: 120;" text="Send Message" />
       <TextField fx:id="recipientFirst" layoutX="39.0" layoutY="229.0" prefHeight="26.0" prefWidth="287.0" promptText="Recipient First Name" />
       <TextField fx:id="recipientLast" layoutX="39.0" layoutY="261.0" prefHeight="26.0" prefWidth="287.0" promptText="Recipient Last Name" />
       <TextField fx:id="messageBody" alignment="TOP_LEFT" layoutX="39.0" layoutY="325.0" prefHeight="131.0" prefWidth="287.0" promptText="Message" />

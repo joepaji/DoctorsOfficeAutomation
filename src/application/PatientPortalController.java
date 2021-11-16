@@ -147,11 +147,16 @@ public class PatientPortalController implements Initializable{
 	
 	//Messages button for the patients
 	public void patientMessages(ActionEvent event) throws IOException {
-		destination = "Messages.fxml";
-		root = FXMLLoader.load(getClass().getResource(destination));
+		destination = "Messenger.fxml";
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
+		root = loader.load();
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow(); 
 		scene = new Scene(root);
 		stage.setScene(scene);
+		MessengerController messengerController = loader.getController();
+		messengerController.setUsername(username);
+		messengerController.setSelfFirstLast();
+		messengerController.displayMessages();
 		stage.show();
 	}
 	
