@@ -64,6 +64,9 @@ public class Login {
 				
 				PatientPortalController patientPortal = patientLoader.getController();
 				patientPortal.setUsername(usernameData);
+				patientPortal.lastVisitSummary();
+				patientPortal.patientContactinfo();
+
 
 				break;
 				
