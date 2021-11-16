@@ -48,11 +48,24 @@ public class NursePortalController{
 	private Parent root;
 	private String destination;
 	private String username;
+	private String patientUsername;
 	private int userID;
 	
 	public NursePortalController()
 	{
 		
+	}
+	
+	public void toHome(ActionEvent event) throws IOException {
+		destination = "NursePortal.fxml";   
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
+		root = loader.load();
+		NursePortalController npc = loader.getController();
+		npc.setUsername(username);
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow(); 
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
 	}
 	
 	public void signOut(ActionEvent event) throws IOException
@@ -104,7 +117,7 @@ public class NursePortalController{
 			if(rs.next()) {
 				String first = rs.getString("first_name");
 				String last = rs.getString("last_name"); 
-				username = rs.getString("username");
+				patientUsername = rs.getString("username");
 				// ************** TODO
 				System.out.println(first);
 				System.out.println(last);
@@ -123,7 +136,7 @@ public class NursePortalController{
 	public void checkIn(ActionEvent event) throws IOException
 	{
 		//TODO check if username is selected (should be assigned from search function).
-		if(username == null || username == "") {
+		if(patientUsername == null || patientUsername == "") {
 			checkinError.setText("Oops, no patients selected.");
 		}
 		else {
@@ -135,6 +148,7 @@ public class NursePortalController{
 			//This passes the username of the patient to the patientCheckIn controller
 			PatientCheckIn patientCheckIn = loader.getController();
 			patientCheckIn.setUsername(username);
+			patientCheckIn.setPatientUsername(patientUsername);
 			patientCheckIn.displayInfo();
 			
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
@@ -151,7 +165,7 @@ public class NursePortalController{
 	}
 	
 	public void displayLastCheckin() {
-		DoctorNurseActions actions = new DoctorNurseActions(username);
+		DoctorNurseActions actions = new DoctorNurseActions(patientUsername);
 		prevCheckin.setText(actions.getLatestCheckin());
 	}
 	
