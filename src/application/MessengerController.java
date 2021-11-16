@@ -176,15 +176,6 @@ public class MessengerController implements Initializable{
 			
 			stmt.executeUpdate(sql);
 			
-			/*if(result.first())
-			{
-				System.out.println("successfully sent message");
-			}
-			else 
-			{
-				System.out.println("error sending message");
-			}*/
-			
 			displayMessages();
 			
 			
@@ -198,11 +189,8 @@ public class MessengerController implements Initializable{
 	public void displayMessages()
 	{
 		try {
-			System.out.println("first: " + first);
-			System.out.println("last: " + last);
 			String sql = "SELECT * FROM messages WHERE ( (receiver_first = '"+ first +"' and receiver_last = '"+ last +"') or "
 													  + "(sender_first = '"+ first +"' and sender_last = '"+ last +"') );";
-			
 			Database database = new Database();
 			Connection c = database.connect();
 			Statement stmt = c.createStatement(
@@ -214,14 +202,9 @@ public class MessengerController implements Initializable{
 			String output = "";
 			
 			
-			if(result.last())
+			while(result.next())
 			{
-				
-			}
-			
-			while(result.previous())
-			{
-				output += "Sender:\t\t" + result.getString(3) + " " + result.getString(4) + "\n";
+				output += "Sender:\t" + result.getString(3) + " " + result.getString(4) + "\n";
 				output += "Recipient:\t" + result.getString(5) + " " + result.getString(6) + "\n";
 				output += "Date:\t\t" + result.getString(2) + "\n\n";
 				output += "Message:\t" + result.getString(1) + "\n\n";
