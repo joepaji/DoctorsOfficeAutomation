@@ -66,8 +66,8 @@ public class PatientCheckIn implements Initializable{
 	private String healthConcernsData;
 	private String allergiesData;
 	private String notesData;
-	private String username;
-	
+	private String nurseUsername;
+	private String patientUsername;
 	
 	public PatientCheckIn()
 	{
@@ -80,7 +80,7 @@ public class PatientCheckIn implements Initializable{
 	}
 	
 	public void displayInfo() {
-		DoctorNurseActions action = new DoctorNurseActions(username);
+		DoctorNurseActions action = new DoctorNurseActions(patientUsername);
 		String[] patientDetails = action.getPatientInfo();
 		patientInfo.setText(patientDetails[0]);
 		patientHistory.setText(patientDetails[1]);
@@ -98,9 +98,18 @@ public class PatientCheckIn implements Initializable{
 	
 	public void toMessages(ActionEvent event) throws IOException
 	{
-		//destination = "Messages.fxml";
-		destination = "login.fxml";    //testing
-		root = FXMLLoader.load(getClass().getResource(destination));
+		destination = "Messenger.fxml";   
+		//root = FXMLLoader.load(getClass().getResource(destination));
+		//stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
+		root = loader.load();
+		
+		//This passes the userID of the user to the messenger controller
+		MessengerController messenger = loader.getController();
+		messenger.setUsername(nurseUsername);
+		messenger.setSelfFirstLast();
+		messenger.displayMessages(); 
+		
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
 		scene = new Scene(root);
 		stage.setScene(scene);
@@ -109,9 +118,12 @@ public class PatientCheckIn implements Initializable{
 	
 	public void toHome(ActionEvent event) throws IOException
 	{
-		destination = "NursePortal.fxml"; 
-		root = FXMLLoader.load(getClass().getResource(destination));
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
+		destination = "NursePortal.fxml";   
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
+		root = loader.load();
+		NursePortalController npc = loader.getController();
+		npc.setUsername(nurseUsername);
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow(); 
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
@@ -159,7 +171,7 @@ public class PatientCheckIn implements Initializable{
 			prepStatement.setString(6, allergiesData);
 			prepStatement.setString(7, notesData);
 			prepStatement.setObject(8, dateTime);
-			prepStatement.setString(9, username);
+			prepStatement.setString(9, patientUsername);
 			
 			prepStatement.executeUpdate();
 			
@@ -187,9 +199,12 @@ public class PatientCheckIn implements Initializable{
     }
 	
 	public void setUsername(String username) {
-		this.username = username;
+		this.nurseUsername = username;
 	}
 	
+	public void setPatientUsername(String patientUsername) {
+		this.patientUsername = patientUsername;
+	}
 	public static boolean isFieldEmpty(String... strings) {
 		for(String s : strings) 
 			if(s == null || s.isEmpty()) 

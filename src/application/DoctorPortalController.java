@@ -40,6 +40,8 @@ public class DoctorPortalController{
 	private Label checkinError;
 	@FXML
 	private TextArea prevCheckin;
+	@FXML
+	private Label hello;
 	
 	private Stage stage;
 	private Scene scene;
@@ -159,5 +161,6 @@ public class DoctorPortalController{
 	//used to help pass the username on from the previous screen to this screen
 	public void setUsername(String username) {
 		this.username = username;
+		hello.setText("Hello, " + username + "!");
 	}
 }
