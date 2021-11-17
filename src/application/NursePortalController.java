@@ -59,7 +59,7 @@ public class NursePortalController{
 		
 	}
 	
-	// back to home screen
+	// Back to home screen
 	public void toHome(ActionEvent event) throws IOException {
 		destination = "NursePortal.fxml";   
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
@@ -72,7 +72,7 @@ public class NursePortalController{
 		stage.show();
 	}
 	
-	// sign out takes the user back to login screen
+	// Sign out takes the user back to login screen
 	public void signOut(ActionEvent event) throws IOException
 	{	
 		destination = "login.fxml";
@@ -83,19 +83,18 @@ public class NursePortalController{
 		stage.show();
 	}
 	
+	// Takes the user to the messenger portal
 	public void toMessages(ActionEvent event) throws IOException
 	{
-		
+		// Set the destination to the proper portal and load it into root
 		destination = "Messenger.fxml";   
-		//root = FXMLLoader.load(getClass().getResource(destination));
-		//stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
 		root = loader.load();
 		
-		//This passes the userID of the user to the messenger controller
+		// Pass the username into the messenger controller
 		MessengerController messenger = loader.getController();
 		messenger.setUsername(username);
-		System.out.println(messenger.username);
+		// Set the first and last name, and display past messages
 		messenger.setSelfFirstLast();
 		messenger.displayMessages(); 
 		
@@ -105,32 +104,32 @@ public class NursePortalController{
 		stage.show();
 	}
 	
+	// search function which is used to lookup patients by their first and last names and date of birth
 	public void search(ActionEvent event) throws IOException
 	{
-		System.out.println("search");
 		try {
+			// Connect to the database
 			Database db = new Database();
 			Connection c = db.connect();
 			Statement stmt = c.createStatement();
 			
-			// search the database for entry with matching userID
+			// Search the database for entry with matching first name, last name, and date of birth
 			String sql = "SELECT * FROM patient WHERE (first_name = '" + firstName.getText().toString() +
 												  "' AND last_name = '" + lastName.getText().toString() + "'"
 												  		+ "AND dob = '" + dateOfBirth.getText().toString()+"');";	
+			// Execute the query and save into resultset
 			ResultSet rs = stmt.executeQuery(sql); 
 			
-			if(rs.next()) {
-				String first = rs.getString("first_name");
-				String last = rs.getString("last_name"); 
+			// If the resultset is not empty, set the patient username from the appropriate column in the resultset
+			if(rs.next()) 
+			{
 				patientUsername = rs.getString("username");
-				// ************** TODO
-				System.out.println(first);
-				System.out.println(last);
 				searchError.setText("");
+				// Display the last checkin now that the patient username has been set
 				displayLastCheckin();
-			} else {
-				searchError.setText("Patient not found.");
-			}
+				
+			// Else patient not found, set error text
+			} else searchError.setText("Patient not found.");
 				
 		} catch (SQLException e) {	
 			System.out.println("Error in connecting to postgreSQL server.");
@@ -138,24 +137,28 @@ public class NursePortalController{
 		}
 	}
 	
+	// checkIn function takes the nurse to the PatientCheckIn portal
 	public void checkIn(ActionEvent event) throws IOException
 	{
-		//TODO check if username is selected (should be assigned from search function).
-		if(patientUsername == null || patientUsername == "") {
+		// Check for null username and display error text
+		if(patientUsername == null || patientUsername == "")
+		{
 			checkinError.setText("Oops, no patients selected.");
 		}
-		else {
-			System.out.println("checkin");	 //testing
+		else // Create a new checkin portal and set the username and patientUsername
+		{
 			destination = "PatientCheckIn.fxml";   
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
 			root = loader.load();
 			
-			//This passes the username of the patient to the patientCheckIn controller
+			//This passes the username of the nurse and the patient to the patientCheckIn controller
 			PatientCheckIn patientCheckIn = loader.getController();
 			patientCheckIn.setUsername(username);
 			patientCheckIn.setPatientUsername(patientUsername);
+			// Display's the patients checkIn info 
 			patientCheckIn.displayInfo();
 			
+			// Sets the new scene and shows it
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
 			scene = new Scene(root);
 			stage.setScene(scene);
@@ -164,12 +167,13 @@ public class NursePortalController{
 		
 	}
 	
-
+	// Used to pass username data from previous portals to this one, and sets the hello label 
 	public void setUsername(String username) {
 		this.username = username;
 		hello.setText("Hello, " + username + "!");
 	}
 	
+	// Display the last checkin of the current patient
 	public void displayLastCheckin() {
 		DoctorNurseActions actions = new DoctorNurseActions(patientUsername);
 		prevCheckin.setText(actions.getLatestCheckin());
