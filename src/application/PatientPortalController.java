@@ -40,6 +40,8 @@ public class PatientPortalController implements Initializable{
 	private TextArea contactInfo;
 	@FXML
 	private TextArea lastVisitSummary;
+	@FXML
+	private Label hello;
 	
 	//Creating Variables
 	private Stage stage;
@@ -56,6 +58,7 @@ public class PatientPortalController implements Initializable{
 	//Method to set the username 
 	public void setUsername(String username) {
 		this.username = username;
+		hello.setText("Hello, " + username + "!");
 	}
 	
 	@Override

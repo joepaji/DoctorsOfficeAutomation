@@ -38,5 +38,10 @@
 		</Label>
 		<TextArea fx:id="contactInfo" layoutX="75.0" layoutY="175.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="313.0" prefWidth="250.0" text="First Name: John&#10;Last Name: Doe&#10;Date of Birth: 1/1/1999&#10;Street Address: 123 Example St&#10;City: Phoenix&#10;State: Arizona&#10;Phone number: +1.4801231234&#10;Email address: example@example.com&#10;&#10;" />
 		<Button fx:id="editButton" layoutX="162.5" layoutY="500.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#patientEdit" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #FFC627;" text="Edit" />
+      <Label fx:id="hello" layoutX="26.0" layoutY="76.0" prefHeight="20.0" prefWidth="202.0" textFill="#404040">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
 	</children>
 </AnchorPane>

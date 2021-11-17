@@ -6,7 +6,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,6 +19,7 @@ import javafx.event.ActionEvent;
 
 public class NursePortalController{
 	
+	// FXML Parameters
 	@FXML
 	private Button signOut;
 	@FXML
@@ -42,20 +42,24 @@ public class NursePortalController{
 	private Label checkinError;
 	@FXML
 	private TextArea prevCheckin;
+	@FXML
+	private Label hello;
 	
+	// Class Parameters
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
 	private String destination;
 	private String username;
 	private String patientUsername;
-	private int userID;
+
 	
 	public NursePortalController()
-	{
+	{		
 		
 	}
 	
+	// back to home screen
 	public void toHome(ActionEvent event) throws IOException {
 		destination = "NursePortal.fxml";   
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
@@ -68,6 +72,7 @@ public class NursePortalController{
 		stage.show();
 	}
 	
+	// sign out takes the user back to login screen
 	public void signOut(ActionEvent event) throws IOException
 	{	
 		destination = "login.fxml";
@@ -162,6 +167,7 @@ public class NursePortalController{
 
 	public void setUsername(String username) {
 		this.username = username;
+		hello.setText("Hello, " + username + "!");
 	}
 	
 	public void displayLastCheckin() {

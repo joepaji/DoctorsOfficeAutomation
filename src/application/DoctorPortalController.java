@@ -40,6 +40,8 @@ public class DoctorPortalController{
 	private Label checkinError;
 	@FXML
 	private TextArea prevCheckin;
+	@FXML
+	private Label hello;
 	
 	private Stage stage;
 	private Scene scene;
@@ -154,5 +156,6 @@ public class DoctorPortalController{
 	
 	public void setUsername(String username) {
 		this.username = username;
+		hello.setText("Hello, " + username + "!");
 	}
 }
