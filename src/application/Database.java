@@ -1,6 +1,7 @@
 package application;
 import java.sql.*;
 
+//opens the data base server using our pgadmin username and password
 public class Database {
 	private String url = "jdbc:postgresql://ec2-3-217-91-165.compute-1.amazonaws.com:5432/daru65ongv34rq";
 	private String username = "vabxlxvlcddmrq";

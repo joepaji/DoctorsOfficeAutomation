@@ -40,6 +40,8 @@ public class DoctorPortalController{
 	private Label checkinError;
 	@FXML
 	private TextArea prevCheckin;
+	@FXML
+	private Label hello;
 	
 	private Stage stage;
 	private Scene scene;
@@ -52,7 +54,7 @@ public class DoctorPortalController{
 	{
 		
 	}
-	
+	//takes the user back to the doctors portal page
 	public void toHome(ActionEvent event) throws IOException {
 		destination = "DoctorPortal.fxml";   
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(destination));
@@ -65,6 +67,7 @@ public class DoctorPortalController{
 		stage.show();
 	}
 	
+	//takes the user back to the login screen
 	public void signOut(ActionEvent event) throws IOException
 	{	
 		destination = "login.fxml";
@@ -74,7 +77,7 @@ public class DoctorPortalController{
 		stage.setScene(scene);
 		stage.show();
 	}
-	
+	//takes the user to the messenger 
 	public void toMessages(ActionEvent event) throws IOException
 	{
 		destination = "Messenger.fxml";
@@ -90,6 +93,7 @@ public class DoctorPortalController{
 		stage.show();
 	}
 	
+	//searches in the database for a specific patient by name and birthday
 	public void search(ActionEvent event) throws IOException
 	{
 		System.out.println("search");
@@ -123,6 +127,7 @@ public class DoctorPortalController{
 		}
 	}
 	
+	//takes the user to the patient exam screen
 	public void beginExam(ActionEvent event) throws IOException
 	{
 		//TODO check if username is selected (should be assigned from search function).
@@ -147,12 +152,15 @@ public class DoctorPortalController{
 		}
 	}
 	
+	//displays a summary of the most recent check in to the previous checkin text field
 	public void displayLastCheckin() {
 		DoctorNurseActions actions = new DoctorNurseActions(patientUsername);
 		prevCheckin.setText(actions.getLatestCheckin());
 	}
 	
+	//used to help pass the username on from the previous screen to this screen
 	public void setUsername(String username) {
 		this.username = username;
+		hello.setText("Hello, " + username + "!");
 	}
 }
