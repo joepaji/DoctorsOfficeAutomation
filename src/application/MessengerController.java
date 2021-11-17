@@ -20,6 +20,8 @@ import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 
+
+// Controls the messenger controller
 public class MessengerController implements Initializable{
 	
 	@FXML
@@ -39,6 +41,7 @@ public class MessengerController implements Initializable{
 	@FXML
 	private TextArea recentMessages;
 	
+	// Class parameters
 	private Stage stage;
 	private Scene scene;
 	private Parent root;

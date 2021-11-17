@@ -17,13 +17,14 @@ import java.sql.Statement;
 import javafx.event.ActionEvent;
 
 
-
+// Controller class for the login screen
 public class Login {
 	
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
 	
+	// FXML variables
 	@FXML
 	private Button login;
 	@FXML
@@ -35,7 +36,7 @@ public class Login {
 	@FXML
 	private Button createAccount;
 	
-	//data
+	// Class parameters
 	private String usernameData;
 	private String passwordData;
 	
@@ -43,6 +44,7 @@ public class Login {
 		
 	}
 	
+	// Log the user in based on the inputted username and password, authenticate, and open proper destination
 	public void userLogin(ActionEvent event) throws IOException {
 		usernameData = username.getText().toString();
 		passwordData = password.getText().toString();
@@ -55,7 +57,7 @@ public class Login {
 			case -1 : destination = "";
 				wrongLogin.setText("Incorrect username/password. Please try again.");
 				break;
-				
+			// Patient login, take to patient portal
 			case 1 : destination = "PatientPortal.fxml";  
 			
 				//This passes the username of the patient to the patientCheckIn controller
@@ -69,10 +71,10 @@ public class Login {
 
 
 				break;
-				
+			// 	
 			case 2 : destination = "NursePortal.fxml";	
 			
-				//This passes the username of the patient to the patientCheckIn controller
+				// This passes the username of the patient to the patientCheckIn controller
 				FXMLLoader nurseLoader = new FXMLLoader(getClass().getResource(destination));
 				root = nurseLoader.load();
 			
@@ -83,7 +85,7 @@ public class Login {
 				
 			case 3 : destination = "DoctorPortal.fxml";
 				
-				//This passes the username of the patient to the patientCheckIn controller
+				// This passes the username of the patient to the patientCheckIn controller
 				FXMLLoader doctorLoader = new FXMLLoader(getClass().getResource(destination));
 				root = doctorLoader.load();
 		
@@ -103,7 +105,7 @@ public class Login {
 	}
 	
 	public void userCreateAccount(ActionEvent event) throws IOException {
-		//checkLogin();
+		// checkLogin();
 		root = FXMLLoader.load(getClass().getResource("createAccount.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();  // assigns the stage to the currently running stage from main
 		scene = new Scene(root);
@@ -111,28 +113,27 @@ public class Login {
 		stage.show();
 	}
 	
-	// authenticate user upon login
+	// Authenticate user passsword and username combinatiob against the values in the database
 	public int authenticateUser(String pUsername, String pPassword){
 		try {
 			Database db = new Database();
 			Connection c = db.connect();
 			Statement stmt = c.createStatement();
 			
-			// make sure the username is unique 
+			// Build the query
 			String sql1 = "SELECT password, usertype FROM patient WHERE username = '"+ pUsername + "' "
 					+ "union SELECT password, usertype from staff WHERE username = '"+ pUsername + "' ";
 		
 			String sql2 = "SELECT * FROM staff WHERE username = '"+ pUsername +"';";
 			
 			ResultSet rs1 = stmt.executeQuery(sql1);
-		//	ResultSet rs2 = stmt.executeQuery(sql2);
 			
 			c.close();
 			
 			String pass = "";
 			int usertype = 0;
 			
-			// check to make sure rs is not empty
+			// Check to make sure rs is not empty
 			if(rs1.next()) {
 				pass = rs1.getString("password");
 				usertype = rs1.getInt("usertype");
