@@ -24,6 +24,7 @@ import javafx.event.ActionEvent;
 
 public class PatientCheckIn implements Initializable{
 	
+	//fx variables
 	@FXML
 	private Button signOut;
 	@FXML
@@ -79,6 +80,7 @@ public class PatientCheckIn implements Initializable{
 		
 	}
 	
+	//show retrieved patient info
 	public void displayInfo() {
 		DoctorNurseActions action = new DoctorNurseActions(patientUsername);
 		String[] patientDetails = action.getPatientInfo();
@@ -86,6 +88,7 @@ public class PatientCheckIn implements Initializable{
 		patientHistory.setText(patientDetails[1]);
 	}
 	
+	//signs out back to login page
 	public void signOut(ActionEvent event) throws IOException
 	{	
 		destination = "login.fxml";
@@ -96,6 +99,7 @@ public class PatientCheckIn implements Initializable{
 		stage.show();
 	}
 	
+	//takes user to the message scene
 	public void toMessages(ActionEvent event) throws IOException
 	{
 		destination = "Messenger.fxml";   
@@ -116,6 +120,7 @@ public class PatientCheckIn implements Initializable{
 		stage.show();
 	}
 	
+	//takes user to the nurse portal scene
 	public void toHome(ActionEvent event) throws IOException
 	{
 		destination = "NursePortal.fxml";   
@@ -129,6 +134,7 @@ public class PatientCheckIn implements Initializable{
 		stage.show();
 	}
 	
+	//nurse confrimation scene for when checking in a patient
 	public void confirmEntry(ActionEvent event) throws IOException
 	{
 		heightData = height.getText().toString();
@@ -150,6 +156,7 @@ public class PatientCheckIn implements Initializable{
 		
 	}
 	
+	//saving a patients checkin into the database
 	public void saveEntry() {
 		LocalDateTime dateTime = LocalDateTime.now();
 		try {
@@ -182,6 +189,7 @@ public class PatientCheckIn implements Initializable{
 		}
 	}
 	
+	//
 	public static void printSQLException(SQLException ex) {
         for (Throwable e: ex) {
             if (e instanceof SQLException) {
