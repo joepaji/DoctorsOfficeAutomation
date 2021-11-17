@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.Parent;
 import javafx.fxml.FXMLLoader;
 
-
+//stages our first scene in javaFX and takes the user to the login page
 public class Main extends Application {
 	
 	public static Stage stg;
@@ -27,7 +27,7 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+	//scene changer	
 	public void changeScene(String fxml) {
 		try {
 			
