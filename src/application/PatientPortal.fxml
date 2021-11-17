@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -9,7 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PatientPortalController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PatientPortalController">
 	<children>
 		<AnchorPane prefHeight="62.0" prefWidth="800.0" style="-fx-background-color: #8c1d40;">
 			<children>
@@ -38,7 +43,7 @@
 		</Label>
 		<TextArea fx:id="contactInfo" layoutX="75.0" layoutY="175.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="313.0" prefWidth="250.0" text="First Name: John&#10;Last Name: Doe&#10;Date of Birth: 1/1/1999&#10;Street Address: 123 Example St&#10;City: Phoenix&#10;State: Arizona&#10;Phone number: +1.4801231234&#10;Email address: example@example.com&#10;&#10;" />
 		<Button fx:id="editButton" layoutX="162.5" layoutY="500.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#patientEdit" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #FFC627;" text="Edit" />
-      <Label fx:id="hello" layoutX="26.0" layoutY="76.0" prefHeight="20.0" prefWidth="202.0" textFill="#404040">
+      <Label fx:id="hello" layoutX="26.0" layoutY="76.0" prefHeight="35.0" prefWidth="364.0" textFill="#404040">
          <font>
             <Font size="24.0" />
          </font>
