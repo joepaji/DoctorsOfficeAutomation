@@ -51,11 +51,13 @@ public class PatientExamController {
 		
 	}
 	
+	//displays a summary of the most recent check in to the previous checkin text field
 	public void displayPrevCheckIn() {
 		DoctorNurseActions action = new DoctorNurseActions(doctorUsername);
 		prevCheckIn.setText(action.getLatestCheckin());
 	}
 	
+	//takes the user back to the login screen
 	public void signOut(ActionEvent event) throws IOException
 	{	
 		destination = "login.fxml";
@@ -66,6 +68,7 @@ public class PatientExamController {
 		stage.show();
 	}
 	
+	//takes the user to the messenger
 	public void toMessages(ActionEvent event) throws IOException
 	{
 		destination = "Messenger.fxml";
@@ -81,6 +84,7 @@ public class PatientExamController {
 		stage.show();
 	}
 	
+	//takes the user back to the doctors portal
 	public void toHome(ActionEvent event) throws IOException
 	{
 		destination = "DoctorPortal.fxml";   
@@ -94,6 +98,7 @@ public class PatientExamController {
 		stage.show();
 	}
 	
+	//saves the inputted prescription information and notes and calls saveEntry() to send it to the database and goes back to the doctors portal
 	public void saveInputs(ActionEvent event) throws IOException{
 		prescriptionsData=inputPrescription.getText().toString();
 		notesData=inputNotes.getText().toString();
@@ -108,6 +113,7 @@ public class PatientExamController {
 		}
 	}
 	
+	//copies the inputted information to the database and takes the user back to the home screen
 	public void saveEntry() {
 		try {
 			String notes=inputNotes.getText().toString();
@@ -134,15 +140,17 @@ public class PatientExamController {
 		}
 	}
 	
-	
+	//used to help pass the username from the previous screen to this screen
 	public void setUsername(String username) {
 		this.doctorUsername = username;
 	}
 	
+	//used to help pass the searched for patient username to this screen
 	public void setPatientUsername(String patientUsername) {
 		this.patientUsername = patientUsername;
 	}
 	
+	//determines if a text field is empty
 	public static boolean isFieldEmpty(String... strings) {
 		for(String s : strings) 
 			if(s == null || s.isEmpty()) 
