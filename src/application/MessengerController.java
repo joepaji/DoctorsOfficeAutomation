@@ -154,7 +154,7 @@ public class MessengerController implements Initializable{
 			stage.show();			
 		}
 	}
-	
+	// Sends the new message to the database
 	public void sendMessage(ActionEvent event) throws IOException
 	{
 		// Retrieve the text data from text fields
