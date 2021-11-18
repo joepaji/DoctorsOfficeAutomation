@@ -211,13 +211,18 @@ public class MessengerController implements Initializable{
 			String output = "";
 			
 			// Move the resultset cursor to the last row and retrieve the appropriate column data
-			result.last();
-			output += "Sender:\t" + result.getString(3) + " " + result.getString(4) + "\n";
-			output += "Recipient:\t" + result.getString(5) + " " + result.getString(6) + "\n";
-			output += "Date:\t\t" + result.getString(2) + "\n\n";
-			output += "Message:\t" + result.getString(1) + "\n\n";
-			output += "---------------------------------------------------------\n";
-			
+			if(result.last())
+			{
+				output += "Sender:\t" + result.getString(3) + " " + result.getString(4) + "\n";
+				output += "Recipient:\t" + result.getString(5) + " " + result.getString(6) + "\n";
+				output += "Date:\t\t" + result.getString(2) + "\n\n";
+				output += "Message:\t" + result.getString(1) + "\n\n";
+				output += "---------------------------------------------------------\n";
+			}
+			else
+			{
+				recentMessages.setText("No message history yet!");
+			}
 			// Move cursor to the previous entry. While result is not empty, iterate through and add to the formatted string
 			while(result.previous())
 			{
