@@ -53,7 +53,7 @@ public class PatientExamController {
 	
 	//displays a summary of the most recent check in to the previous checkin text field
 	public void displayPrevCheckIn() {
-		DoctorNurseActions action = new DoctorNurseActions(doctorUsername);
+		DoctorNurseActions action = new DoctorNurseActions(patientUsername);
 		prevCheckIn.setText(action.getLatestCheckin());
 	}
 	
