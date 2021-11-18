@@ -169,7 +169,7 @@ public class MessengerController implements Initializable{
 		try {
 			// Create the query 
 			String sql = "INSERT INTO messages(receiver_first, receiver_last, sender_first, sender_last, date, message_body)"
-				 	   + "VALUES('"+ recipientFirstName +"', '"+ recipientLastName +"', '"+ first +"', '"+ last +"', '"+ dateString +"', '"+ message +"');";
+				 	   + " VALUES('"+ recipientFirstName +"', '"+ recipientLastName +"', '"+ first +"', '"+ last +"', '"+ dateString +"', '"+ message +"');";
 			
 			// Connect to the database
 			Database database = new Database();
