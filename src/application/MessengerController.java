@@ -213,7 +213,7 @@ public class MessengerController implements Initializable{
 			// Move the resultset cursor to the last row and retrieve the appropriate column data
 			if(result.last())
 			{
-				output += "Sender:\t" + result.getString(3) + " " + result.getString(4) + "\n";
+				output += "Sender:\t\t" + result.getString(3) + " " + result.getString(4) + "\n";
 				output += "Recipient:\t" + result.getString(5) + " " + result.getString(6) + "\n";
 				output += "Date:\t\t" + result.getString(2) + "\n\n";
 				output += "Message:\t" + result.getString(1) + "\n\n";
